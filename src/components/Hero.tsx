@@ -67,10 +67,10 @@ const Hero = () => {
           >
             <Button 
               size="lg" 
-              onClick={() => scrollToSection("projects")}
+              onClick={() => scrollToSection("client-work")}
               className="group text-base px-8 py-6 rounded-xl"
             >
-              View My Projects
+              View My Work
               <ArrowDown className="ml-2 h-4 w-4 transition-transform group-hover:translate-y-1" />
             </Button>
             
