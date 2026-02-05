@@ -37,7 +37,6 @@ const Hero = () => {
             transition={{ duration: 0.7, delay: 0.1 }}
             className="mb-6"
           >
-            Hi, I'm{" "}
             <span className="text-accent">Harrison Bottomley</span>
           </motion.h1>
           
@@ -47,7 +46,7 @@ const Hero = () => {
             transition={{ duration: 0.7, delay: 0.2 }}
             className="text-xl md:text-2xl lg:text-3xl text-muted-foreground max-w-3xl mb-4 leading-relaxed font-light"
           >
-            I build websites and connected systems that actually work.
+            I build websites that help businesses grow.
           </motion.p>
           
           <motion.p 
