@@ -70,13 +70,13 @@ const About = () => {
             className="lg:col-span-3 space-y-6 text-lg text-muted-foreground"
           >
             <p className="text-foreground text-xl leading-relaxed">
-              I'm a Creative Computing student who enjoys building things that work — 
-              functional websites, interactive systems, and projects that connect hardware to the web.
+              I'm a Creative Computing student who enjoys building things — 
+              websites, interactive systems, and projects that connect hardware to the web.
             </p>
             
             <p>
               My work sits at the intersection of code, design, and physical computing. 
-              I'm comfortable working with HTML, CSS, and JavaScript for web development, 
+              I'm comfortable with HTML, CSS, and JavaScript for web development, 
               and I've built sensor-based systems using Arduino that display real-time data online.
             </p>
             
@@ -86,8 +86,7 @@ const About = () => {
             </p>
             
             <p>
-              I'm early in my career, but I'm already doing real work. If you need a 
-              straightforward website or want to collaborate on something interesting, 
+              If you need a straightforward website or want to collaborate on something interesting, 
               I'd be happy to chat.
             </p>
 

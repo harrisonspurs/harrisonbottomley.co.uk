@@ -15,22 +15,13 @@ interface Project {
 
 const projects: Project[] = [
   {
-    title: "Bathroom Occupancy Detector",
-    description: "A hardware-software system that displays live bathroom occupancy status on a custom website.",
-    details: "Built using an Arduino UNO R4 WiFi with sensors to detect occupancy. The system communicates with a web interface that shows real-time status — useful for shared spaces where you'd rather not knock on doors.",
-    tools: ["Arduino UNO R4 WiFi", "Sensors", "HTML", "CSS", "JavaScript"],
-    outcome: "Demonstrates practical IoT problem-solving: hardware integration, real-time data, and a clean user interface.",
-    github: "https://github.com/harrisonspurs",
-    icon: <Cpu className="h-6 w-6" />,
-    featured: true,
-  },
-  {
-    title: "Personal & Client Websites",
-    description: "Clean, functional websites built for real use — not just portfolio pieces.",
-    details: "I've developed websites for personal projects and small clients, focusing on clear layouts, good typography, and fast load times. Each site is hand-coded using HTML, CSS, and JavaScript.",
-    tools: ["HTML", "CSS", "JavaScript", "VS Code", "GitHub"],
-    outcome: "Every project ships. These aren't design concepts — they're working websites that people actually use.",
+    title: "Web Design & Development",
+    description: "Clean, functional websites built for businesses and personal brands.",
+    details: "I design and develop websites that look professional and convert visitors into customers. Every site is built with performance, clarity, and usability in mind.",
+    tools: ["HTML", "CSS", "JavaScript", "React", "VS Code", "GitHub"],
+    outcome: "Websites that help businesses establish credibility and generate leads.",
     icon: <Globe className="h-6 w-6" />,
+    featured: true,
   },
   {
     title: "Branding & Visual Identity",
@@ -39,6 +30,15 @@ const projects: Project[] = [
     tools: ["Design principles", "Colour theory", "Typography"],
     outcome: "Brand assets that look professional and work consistently across web and print.",
     icon: <Palette className="h-6 w-6" />,
+  },
+  {
+    title: "Physical Computing",
+    description: "Hardware projects that connect to the web.",
+    details: "I build sensor-based systems using Arduino that communicate with web interfaces. From occupancy detection to interactive installations — bridging the gap between physical and digital.",
+    tools: ["Arduino", "Sensors", "JavaScript", "APIs"],
+    outcome: "Connected systems that solve real problems.",
+    github: "https://github.com/harrisonspurs",
+    icon: <Cpu className="h-6 w-6" />,
   },
 ];
 
@@ -74,11 +74,11 @@ const Projects = () => {
           transition={{ duration: 0.6 }}
           className="max-w-2xl mb-16"
         >
-          <span className="section-label">Portfolio</span>
-          <h2 className="mb-4">Featured Projects</h2>
+          <span className="section-label">What I Do</span>
+          <h2 className="mb-4">Services</h2>
           <p className="text-lg text-muted-foreground">
-            Real work, completed and shipped. No placeholders or concept-only projects — 
-            these are things I've actually built.
+            From websites to physical computing — I enjoy building things that solve problems 
+            and help people get things done.
           </p>
         </motion.div>
         
