@@ -1,60 +1,100 @@
+import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
-import { Code, Palette, Cpu, CheckCircle2 } from "lucide-react";
 
-interface SkillCategory {
+interface SkillGroup {
   title: string;
-  description: string;
-  icon: React.ReactNode;
-  skills: string[];
+  gradient: string;
+  skills: { name: string; level: number }[];
 }
 
-const skillCategories: SkillCategory[] = [
+const skillGroups: SkillGroup[] = [
   {
-    title: "Web & Development",
-    description: "Building clean, functional websites",
-    icon: <Code className="h-6 w-6" />,
-    skills: ["HTML", "CSS", "JavaScript", "VS Code", "GitHub", "Responsive Design"],
+    title: "Languages",
+    gradient: "from-[#a855f7] to-[#6366f1]",
+    skills: [
+      { name: "HTML/CSS", level: 95 },
+      { name: "JavaScript", level: 90 },
+      { name: "Python", level: 85 },
+      { name: "C++", level: 70 },
+      { name: "GLSL", level: 60 },
+    ],
   },
   {
-    title: "Design",
-    description: "Creating cohesive visual identities",
-    icon: <Palette className="h-6 w-6" />,
-    skills: ["Branding", "Visual Hierarchy", "Logo Design", "Favicon Design", "Colour Systems", "Typography"],
+    title: "Tools",
+    gradient: "from-[#f59e0b] to-[#ef4444]",
+    skills: [
+      { name: "VS Code", level: 95 },
+      { name: "Git / GitHub", level: 85 },
+      { name: "Figma", level: 75 },
+      { name: "Blender", level: 70 },
+      { name: "Unreal Engine", level: 65 },
+    ],
   },
   {
-    title: "Hardware & Systems",
-    description: "Connecting physical to digital",
-    icon: <Cpu className="h-6 w-6" />,
-    skills: ["Arduino", "Sensors", "Physical Computing", "IoT", "Web-Connected Devices"],
+    title: "Frameworks",
+    gradient: "from-[#3b82f6] to-[#06b6d4]",
+    skills: [
+      { name: "React", level: 85 },
+      { name: "Node.js", level: 80 },
+      { name: "p5.js", level: 80 },
+      { name: "Express.js", level: 75 },
+      { name: "Three.js", level: 70 },
+      { name: "TensorFlow", level: 65 },
+    ],
+  },
+  {
+    title: "Creative & Specialisations",
+    gradient: "from-[#ec4899] to-[#a855f7]",
+    skills: [
+      { name: "Generative Art", level: 80 },
+      { name: "Backend Development", level: 80 },
+      { name: "UI/UX Design", level: 75 },
+      { name: "Machine Learning", level: 70 },
+      { name: "3D Modelling", level: 70 },
+      { name: "XR Development", level: 65 },
+    ],
   },
 ];
 
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.1,
-    },
-  },
-};
+const SkillBar = ({ name, level, gradient, delay }: { name: string; level: number; gradient: string; delay: number }) => {
+  const [visible, setVisible] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
 
-const itemVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.5 },
-  },
+  useEffect(() => {
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) setVisible(true);
+    }, { threshold: 0.3 });
+    if (ref.current) observer.observe(ref.current);
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <div ref={ref} className="group">
+      <div className="flex justify-between mb-1.5">
+        <span className="text-sm text-muted-foreground group-hover:text-foreground transition-colors">{name}</span>
+        <span className="text-sm font-mono text-muted-foreground">{level}%</span>
+      </div>
+      <div className="progress-bar">
+        <div
+          className={`progress-fill bg-gradient-to-r ${gradient}`}
+          style={{
+            width: visible ? `${level}%` : "0%",
+            transitionDelay: `${delay}ms`,
+            boxShadow: visible ? `0 0 12px hsl(var(--blue) / 0.3)` : "none",
+          }}
+        />
+      </div>
+    </div>
+  );
 };
 
 const Skills = () => {
   return (
     <section id="skills" className="section relative">
-      <div className="absolute bottom-0 left-0 w-1/3 h-1/3 bg-gradient-to-tr from-accent/5 to-transparent pointer-events-none" />
-      
+      <div className="absolute bottom-0 left-0 w-1/3 h-1/3 bg-gradient-to-tr from-purple/5 to-transparent pointer-events-none" />
+
       <div className="container-wide relative z-10">
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -62,54 +102,37 @@ const Skills = () => {
           className="max-w-2xl mb-16"
         >
           <span className="section-label">Capabilities</span>
-          <h2 className="mb-4">Skills & Tools</h2>
+          <h2 className="mb-4">Technical Proficiency</h2>
           <p className="text-lg text-muted-foreground">
-            What I work with regularly. No exaggeration — these are tools I actually use 
-            to build real projects.
+            Skills developed through coursework and professional projects.
           </p>
         </motion.div>
-        
-        <motion.div 
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          className="grid md:grid-cols-3 gap-8"
-        >
-          {skillCategories.map((category, index) => (
-            <motion.div 
-              key={index} 
-              variants={itemVariants}
-              className="group"
+
+        <div className="grid md:grid-cols-2 gap-8">
+          {skillGroups.map((group, gi) => (
+            <motion.div
+              key={group.title}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: gi * 0.1 }}
+              className="glass-card p-6 md:p-8"
             >
-              <div className="glass-card p-6 h-full transition-all duration-300 hover:border-accent/30">
-                <div className="w-12 h-12 rounded-xl bg-accent/10 text-accent flex items-center justify-center mb-4 group-hover:bg-accent group-hover:text-accent-foreground transition-colors duration-300">
-                  {category.icon}
-                </div>
-                
-                <h3 className="text-xl font-semibold mb-2 text-foreground">
-                  {category.title}
-                </h3>
-                
-                <p className="text-sm text-muted-foreground mb-6">
-                  {category.description}
-                </p>
-                
-                <ul className="space-y-2.5">
-                  {category.skills.map((skill, i) => (
-                    <li 
-                      key={i}
-                      className="text-muted-foreground flex items-center gap-2.5 text-sm"
-                    >
-                      <CheckCircle2 className="w-4 h-4 text-accent flex-shrink-0" />
-                      {skill}
-                    </li>
-                  ))}
-                </ul>
+              <h3 className="text-lg font-semibold mb-6 text-foreground">{group.title}</h3>
+              <div className="space-y-5">
+                {group.skills.map((skill, si) => (
+                  <SkillBar
+                    key={skill.name}
+                    name={skill.name}
+                    level={skill.level}
+                    gradient={group.gradient}
+                    delay={si * 100}
+                  />
+                ))}
               </div>
             </motion.div>
           ))}
-        </motion.div>
+        </div>
       </div>
     </section>
   );

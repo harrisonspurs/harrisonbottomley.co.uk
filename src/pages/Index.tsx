@@ -1,30 +1,33 @@
+import { useState } from "react";
+import LoadingScreen from "@/components/LoadingScreen";
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
-import About from "@/components/About";
 import Projects from "@/components/Projects";
-import ClientWebsites from "@/components/ClientWebsites";
-import UniversityProjects from "@/components/UniversityProjects";
-import Services from "@/components/Services";
 import Skills from "@/components/Skills";
+import About from "@/components/About";
+import Services from "@/components/Services";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 
 const Index = () => {
+  const [loaded, setLoaded] = useState(false);
+
   return (
-    <div className="min-h-screen bg-background">
-      <Header />
-      <main>
-        <Hero />
-        <ClientWebsites />
-        <Projects />
-        <UniversityProjects />
-        <About />
-        <Services />
-        <Skills />
-        <Contact />
-      </main>
-      <Footer />
-    </div>
+    <>
+      {!loaded && <LoadingScreen onComplete={() => setLoaded(true)} />}
+      <div className={`min-h-screen bg-background transition-opacity duration-700 ${loaded ? "opacity-100" : "opacity-0"}`}>
+        <Header />
+        <main>
+          <Hero />
+          <Services />
+          <Projects />
+          <Skills />
+          <About />
+          <Contact />
+        </main>
+        <Footer />
+      </div>
+    </>
   );
 };
 
