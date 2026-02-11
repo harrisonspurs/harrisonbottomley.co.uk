@@ -1,100 +1,118 @@
 import { motion } from "framer-motion";
-import { MapPin, GraduationCap, Code2, Wrench } from "lucide-react";
+import { MapPin, GraduationCap, Calendar, CheckCircle2 } from "lucide-react";
 
 const About = () => {
-  const highlights = [
-    {
-      icon: <GraduationCap className="h-5 w-5" />,
-      label: "Student",
-      value: "University of Salford",
-    },
-    {
-      icon: <MapPin className="h-5 w-5" />,
-      label: "Based in",
-      value: "United Kingdom",
-    },
-    {
-      icon: <Code2 className="h-5 w-5" />,
-      label: "Focus",
-      value: "Creative Computing",
-    },
-    {
-      icon: <Wrench className="h-5 w-5" />,
-      label: "Approach",
-      value: "Build & Ship",
-    },
+  const focuses = [
+    "Artificial Intelligence & Machine Learning",
+    "Full-Stack Web Development",
+    "XR Design & Immersive Technologies",
+    "Freelance Web Development",
+    "Creative Coding & Generative Art",
   ];
 
   return (
-    <section id="about" className="section bg-card relative overflow-hidden">
-      {/* Decorative gradient */}
-      <div className="absolute inset-0 bg-gradient-to-tr from-accent/5 via-transparent to-transparent pointer-events-none" />
-      
+    <section id="about" className="section relative overflow-hidden">
+      <div className="absolute inset-0 bg-gradient-to-br from-blue/3 via-transparent to-pink/3 pointer-events-none" />
+
       <div className="container-wide relative z-10">
-        <div className="grid lg:grid-cols-5 gap-12 lg:gap-16">
-          {/* Left column - highlights */}
-          <motion.div 
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="mb-12"
+        >
+          <span className="section-label">Background</span>
+          <h2>About Me</h2>
+        </motion.div>
+
+        <div className="grid lg:grid-cols-5 gap-12">
+          {/* Left - Photo & info */}
+          <motion.div
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="lg:col-span-2"
+            className="lg:col-span-2 space-y-6"
           >
-            <span className="section-label">About Me</span>
-            <h2 className="mb-8">Harrison Bottomley</h2>
-            
-            <div className="grid grid-cols-2 gap-4">
-              {highlights.map((item, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className="feature-card"
-                >
-                  <div className="text-accent mb-2">{item.icon}</div>
-                  <p className="text-xs text-muted-foreground mb-1">{item.label}</p>
-                  <p className="text-sm font-medium text-foreground">{item.value}</p>
-                </motion.div>
+            {/* Photo placeholder */}
+            <div className="aspect-square max-w-sm rounded-2xl bg-card border border-border flex items-center justify-center overflow-hidden">
+              <div className="text-center p-8">
+                <div className="w-20 h-20 rounded-full bg-gradient-to-br from-blue to-pink mx-auto mb-4 flex items-center justify-center text-white font-bold text-2xl">
+                  HB
+                </div>
+                <p className="text-sm text-muted-foreground">Professional photo coming soon</p>
+              </div>
+            </div>
+
+            {/* Quick info */}
+            <div className="glass-card p-5 space-y-4">
+              {[
+                { icon: <MapPin className="h-4 w-4" />, label: "Location", value: "Middlesbrough / Salford, UK" },
+                { icon: <CheckCircle2 className="h-4 w-4" />, label: "Status", value: "Available for Projects" },
+                { icon: <Calendar className="h-4 w-4" />, label: "Year", value: "2nd Year Student" },
+              ].map((item, i) => (
+                <div key={i} className="flex items-center gap-3">
+                  <span className="text-blue">{item.icon}</span>
+                  <div>
+                    <p className="text-xs text-muted-foreground">{item.label}</p>
+                    <p className="text-sm font-medium text-foreground">{item.value}</p>
+                  </div>
+                </div>
               ))}
             </div>
           </motion.div>
-          
-          {/* Right column - bio */}
-          <motion.div 
+
+          {/* Right - Bio */}
+          <motion.div
             initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="lg:col-span-3 space-y-6 text-lg text-muted-foreground"
+            className="lg:col-span-3 space-y-6"
           >
-            <p className="text-foreground text-xl leading-relaxed">
-              I'm a Creative Computing student who enjoys building things — 
-              websites, interactive systems, and projects that connect hardware to the web.
-            </p>
-            
-            <p>
-              My work sits at the intersection of code, design, and physical computing. 
-              I'm comfortable with HTML, CSS, and JavaScript for web development, 
-              and I've built sensor-based systems using Arduino that display real-time data online.
-            </p>
-            
-            <p>
-              I value clarity and usability over flashy visuals. When I build something, 
-              I focus on making it work well and look clean — no unnecessary complexity.
-            </p>
-            
-            <p>
-              If you need a straightforward website or want to collaborate on something interesting, 
-              I'd be happy to chat.
-            </p>
+            <div className="space-y-5 text-muted-foreground">
+              <p className="text-foreground text-lg leading-relaxed">
+                I'm a second-year Creative Computing student at the University of Salford 
+                with a passion for web development and creative technology.
+              </p>
+              <p>
+                Currently studying Artificial Intelligence, Full-Stack Development, and XR Design, 
+                I combine technical skills with creative thinking to build digital solutions. My coursework 
+                spans backend development, generative art, interaction design, IoT, and mathematical 
+                computing, giving me a diverse technical foundation across multiple disciplines.
+              </p>
+              <p>
+                Alongside my studies, I work as a freelance web developer, creating professional websites 
+                for small businesses in the Manchester and Salford area. I specialise in custom website 
+                design, hosting setup, and ongoing maintenance, helping local businesses establish their 
+                online presence.
+              </p>
+            </div>
 
-            <div className="pt-4">
-              <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-accent/10 border border-accent/20">
-                <span className="w-2 h-2 bg-accent rounded-full animate-pulse" />
-                <span className="text-sm font-medium text-accent">Open to opportunities</span>
+            {/* Education */}
+            <div className="glass-card p-5 flex items-center gap-4">
+              <div className="w-12 h-12 rounded-xl bg-purple/10 text-purple flex items-center justify-center flex-shrink-0">
+                <GraduationCap className="h-5 w-5" />
               </div>
+              <div>
+                <p className="font-semibold text-foreground">University of Salford</p>
+                <p className="text-sm text-muted-foreground">BSc Creative Computing · 2023 – Present · Expected 2026</p>
+              </div>
+            </div>
+
+            {/* Current focus */}
+            <div>
+              <h3 className="text-lg font-semibold mb-4 text-foreground">Current Focus</h3>
+              <div className="flex flex-wrap gap-2">
+                {focuses.map((f) => (
+                  <span key={f} className="skill-pill">{f}</span>
+                ))}
+              </div>
+            </div>
+
+            <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-green/10 border border-green/20">
+              <span className="w-2 h-2 bg-green rounded-full animate-pulse" />
+              <span className="text-sm font-medium text-green">Available for new projects</span>
             </div>
           </motion.div>
         </div>
