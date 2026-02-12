@@ -16,6 +16,7 @@ interface Project {
   github?: string;
   status?: string;
   placeholder?: boolean;
+  image?: string;
 }
 
 const projects: Project[] = [
@@ -29,6 +30,7 @@ const projects: Project[] = [
     badgeColor: "bg-blue/20 text-blue",
     category: ["client"],
     link: "https://hbottomleyltd.lovable.app/",
+    image: "/hbottomley.png",
   },
   {
     title: "Top Frog Records",
@@ -39,6 +41,7 @@ const projects: Project[] = [
     badgeColor: "bg-blue/20 text-blue",
     category: ["client"],
     link: "https://topfrogrecords.lovable.app/",
+    image: "/topfrog.png",
   },
   {
     title: "The Wearhouse Company",
@@ -49,6 +52,7 @@ const projects: Project[] = [
     badgeColor: "bg-blue/20 text-blue",
     category: ["client"],
     link: "https://thewearhousecompany.lovable.app/",
+    image: "/wearhouse.png",
   },
   // University - Completed
   {
@@ -230,9 +234,17 @@ const Projects = () => {
             >
               {/* Image placeholder */}
               <div className="aspect-video bg-secondary/50 border-b border-border flex items-center justify-center relative overflow-hidden">
-                <div className="text-muted-foreground/30 text-xs font-mono">
-                  {project.placeholder ? "Coming Soon" : "Screenshot"}
-                </div>
+                {project.image ? (
+                  <img 
+                    src={project.image} 
+                    alt={project.title}
+                    className="w-full h-full object-cover"
+                  />
+                ) : (
+                  <div className="text-muted-foreground/30 text-xs font-mono">
+                    {project.placeholder ? "Coming Soon" : "Screenshot"}
+                  </div>
+                )}
                 {/* Badge */}
                 <span className={`absolute top-3 left-3 text-[10px] font-bold tracking-wider px-2.5 py-1 rounded-md ${project.badgeColor}`}>
                   {project.badge}
