@@ -35,12 +35,12 @@ const About = () => {
             className="lg:col-span-2 space-y-6"
           >
             {/* Photo placeholder */}
-            <div className="aspect-square max-w-sm rounded-2xl bg-card border border-border flex items-center justify-center overflow-hidden">
-              <div className="text-center p-8">
-                <div className="w-20 h-20 rounded-full bg-gradient-to-br from-blue to-pink mx-auto mb-4 flex items-center justify-center text-white font-bold text-2xl">
-                  HB
+            <div className="aspect-square max-w-sm rounded-2xl bg-card border border-border flex items-center justify-center overflow-hidden relative">
+              <div className="absolute inset-0 bg-gradient-to-br from-blue/10 via-purple/5 to-pink/10" />
+              <div className="relative z-10 flex flex-col items-center justify-center w-full h-full">
+                <div className="w-40 h-40 rounded-full bg-gradient-to-br from-blue via-purple to-pink flex items-center justify-center shadow-2xl shadow-blue/20 ring-4 ring-blue/20">
+                  <span className="text-white font-bold text-5xl tracking-tight select-none">HB</span>
                 </div>
-                <p className="text-sm text-muted-foreground">Professional photo coming soon</p>
               </div>
             </div>
 
