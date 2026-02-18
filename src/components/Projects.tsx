@@ -36,25 +36,6 @@ interface Project {
 }
 
 const projects: Project[] = [
-  // ── CREATIVE COLLAB (Featured – first in university) ──────────────────────
-  {
-    title: "Creative Collaboration — Media City Light Waves",
-    subtitle: "Interactive Game Installation · Public Exhibition",
-    description:
-      "Showcased an original Unreal Engine game at the Media City Light Waves public event as part of the Creative Collaboration module. Interactive installation attracting hundreds of visitors and demonstrating real-world application of game design skills.",
-    tech: ["Unreal Engine", "Game Design", "Blueprint Scripting", "Event Production"],
-    badge: "UNIVERSITY",
-    badgeColor: "bg-purple/20 text-purple",
-    category: ["university"],
-    image: lightwavesImg,
-    featured: true,
-    stateBadge: "live",
-    buttons: [
-      { label: "View Event Gallery", href: "/projects/media-city-light-waves", icon: "gallery" },
-      { label: "View Code", icon: "code", disabled: true },
-      { label: "View Documentation", icon: "docs", disabled: true },
-    ],
-  },
   // ── CLIENT WORK ───────────────────────────────────────────────────────────
   {
     title: "HBottomley Ltd",
@@ -118,6 +99,25 @@ const projects: Project[] = [
     stateBadge: "live",
     buttons: [
       { label: "View Code", href: "https://github.com/harrisonspurs", icon: "code" },
+      { label: "View Documentation", href: "/docs/backend_development.pdf", icon: "docs" },
+    ],
+  },
+  // ── CREATIVE COLLAB (Featured – 5th position) ──────────────────────────────
+  {
+    title: "Creative Collaboration — Media City Light Waves",
+    subtitle: "Interactive Game Installation · Public Exhibition",
+    description:
+      "Showcased an original Unreal Engine game at the Media City Light Waves public event as part of the Creative Collaboration module. Interactive installation attracting hundreds of visitors and demonstrating real-world application of game design skills.",
+    tech: ["Unreal Engine", "Game Design", "Blueprint Scripting", "Event Production"],
+    badge: "UNIVERSITY",
+    badgeColor: "bg-purple/20 text-purple",
+    category: ["university"],
+    image: lightwavesImg,
+    featured: true,
+    stateBadge: "live",
+    buttons: [
+      { label: "View Event Gallery", href: "/projects/media-city-light-waves", icon: "gallery" },
+      { label: "View Code", icon: "code", disabled: true },
       { label: "View Documentation", icon: "docs", disabled: true },
     ],
   },
@@ -134,7 +134,7 @@ const projects: Project[] = [
     stateBadge: "live",
     buttons: [
       { label: "View Code", href: "https://github.com/harrisonspurs", icon: "code" },
-      { label: "View Documentation", icon: "docs", disabled: true },
+      { label: "View Documentation", href: "/docs/iot_documentation.pdf", icon: "docs" },
     ],
   },
   {
@@ -150,7 +150,7 @@ const projects: Project[] = [
     stateBadge: "live",
     buttons: [
       { label: "View Code", href: "https://github.com/harrisonspurs", icon: "code" },
-      { label: "View Documentation", icon: "docs", disabled: true },
+      { label: "View Documentation", href: "/docs/mathematical_practice.pdf", icon: "docs" },
     ],
   },
   {
@@ -166,7 +166,7 @@ const projects: Project[] = [
     stateBadge: "live",
     buttons: [
       { label: "View Code", href: "https://github.com/harrisonspurs", icon: "code" },
-      { label: "View Documentation", icon: "docs", disabled: true },
+      { label: "View Documentation", href: "/docs/maths_for_computing.pdf", icon: "docs" },
     ],
   },
   {
@@ -181,7 +181,7 @@ const projects: Project[] = [
     stateBadge: "in-development",
     buttons: [
       { label: "View Code", href: "https://github.com/harrisonspurs", icon: "code" },
-      { label: "View Documentation", icon: "docs", disabled: true },
+      { label: "View Documentation", href: "/docs/generative_art.pdf", icon: "docs" },
     ],
   },
   {
@@ -196,7 +196,7 @@ const projects: Project[] = [
     stateBadge: "in-development",
     buttons: [
       { label: "View Code", href: "https://github.com/harrisonspurs", icon: "code" },
-      { label: "View Documentation", icon: "docs", disabled: true },
+      { label: "View Documentation", href: "/docs/creative_coding.pdf", icon: "docs" },
     ],
   },
   {
@@ -211,22 +211,7 @@ const projects: Project[] = [
     stateBadge: "in-development",
     buttons: [
       { label: "View Code", href: "https://github.com/harrisonspurs", icon: "code" },
-      { label: "View Documentation", icon: "docs", disabled: true },
-    ],
-  },
-  {
-    title: "Creative Collaboration",
-    subtitle: "Team-Based Creative Projects",
-    description:
-      "Collaborative projects focusing on teamwork, agile methodologies, and interdisciplinary creative work.",
-    tech: ["Git", "Agile", "Collaboration Tools"],
-    badge: "UNIVERSITY",
-    badgeColor: "bg-purple/20 text-purple",
-    category: ["university"],
-    stateBadge: "in-development",
-    buttons: [
-      { label: "View Code", icon: "code", disabled: true },
-      { label: "View Documentation", icon: "docs", disabled: true },
+      { label: "View Documentation", href: "/docs/web_technologies.pdf", icon: "docs" },
     ],
   },
   // ── IN PROGRESS ───────────────────────────────────────────────────────────
@@ -336,7 +321,7 @@ const ProjectCard = ({ project, index }: { project: Project; index: number }) =>
     }
 
     // Internal link (gallery)
-    if (btn.href && btn.href.startsWith("/")) {
+    if (btn.href && btn.href.startsWith("/") && !btn.href.startsWith("/docs")) {
       return (
         <Link key={btn.label} to={btn.href} className={className}>
           <ButtonIcon icon={btn.icon} />
