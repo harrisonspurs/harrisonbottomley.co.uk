@@ -104,7 +104,7 @@ const projects: Project[] = [
     badge: "CLIENT WORK",
     badgeColor: "bg-blue/20 text-blue",
     category: ["client"],
-    image: "/hbottomley.png",
+    image: hbottomleyImg,
     stateBadge: "live",
     buttons: [
       { label: "View Live Site", href: "https://hbottomleyltd.lovable.app/", icon: "live" },
@@ -120,7 +120,7 @@ const projects: Project[] = [
     badge: "CLIENT WORK",
     badgeColor: "bg-blue/20 text-blue",
     category: ["client"],
-    image: "/topfrog.png",
+    image: topfrogImg,
     stateBadge: "live",
     buttons: [
       { label: "View Live Site", href: "https://topfrogrecords.lovable.app/", icon: "live" },
@@ -136,7 +136,7 @@ const projects: Project[] = [
     badge: "CLIENT WORK",
     badgeColor: "bg-blue/20 text-blue",
     category: ["client"],
-    image: "/wearhouse.png",
+    image: wearhouseImg,
     stateBadge: "live",
     buttons: [
       { label: "View Live Site", href: "https://thewearhousecompany.lovable.app/", icon: "live" },
