@@ -57,7 +57,7 @@ const projects: Project[] = [
     stateBadge: "live",
     buttons: [
       { label: "View Code", href: "https://github.com/harrisonspurs/Ai_study_tracking", icon: "code" },
-      { label: "View Documentation", icon: "docs", disabled: true },
+      { label: "View Documentation", href: "/docs/ai_study_tracking.pdf", icon: "docs" },
     ],
   },
   {
@@ -74,7 +74,7 @@ const projects: Project[] = [
     buttons: [
       { label: "View Live Demo", href: "https://studentfocus.me/", icon: "live" },
       { label: "View Code", href: "https://github.com/harrisonspurs/Fullstack_Development", icon: "code" },
-      { label: "View Documentation", icon: "docs", disabled: true },
+      { label: "View Documentation", href: "/docs/fullstack_development.pdf", icon: "docs" },
     ],
   },
   {
@@ -91,7 +91,7 @@ const projects: Project[] = [
     buttons: [
       { label: "View Live Demo", href: "https://xrdesign.vercel.app/", icon: "live" },
       { label: "View Code", href: "https://github.com/harrisonspurs/XR-Design", icon: "code" },
-      { label: "View Documentation", icon: "docs", disabled: true },
+      { label: "View Documentation", href: "/docs/xr_design.pdf", icon: "docs" },
     ],
   },
   // ── CLIENT WORK ───────────────────────────────────────────────────────────
