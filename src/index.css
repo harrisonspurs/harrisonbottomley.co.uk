@@ -6,46 +6,44 @@
 
 @layer base {
   :root {
-    /* Editorial cream palette */
-    --background: 38 30% 96%;        /* warm off-white / cream */
-    --foreground: 25 15% 12%;        /* deep ink */
+    --background: 220 20% 98%;
+    --foreground: 220 20% 11%;
 
-    --card: 38 25% 93%;
-    --card-foreground: 25 15% 12%;
+    --card: 220 20% 100%;
+    --card-foreground: 220 20% 11%;
 
-    --popover: 38 30% 96%;
-    --popover-foreground: 25 15% 12%;
+    --popover: 220 20% 98%;
+    --popover-foreground: 220 20% 11%;
 
-    --primary: 18 65% 38%;           /* terracotta */
-    --primary-foreground: 38 30% 96%;
+    --primary: 221 70% 46%;
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 35 18% 88%;
-    --secondary-foreground: 25 15% 25%;
+    --secondary: 220 16% 93%;
+    --secondary-foreground: 220 18% 21%;
 
-    --muted: 35 15% 90%;
-    --muted-foreground: 25 8% 42%;
+    --muted: 220 16% 94%;
+    --muted-foreground: 220 10% 42%;
 
-    --accent: 30 50% 45%;            /* warm ochre */
-    --accent-foreground: 38 30% 96%;
+    --accent: 220 20% 20%;
+    --accent-foreground: 0 0% 100%;
 
-    --destructive: 0 60% 45%;
-    --destructive-foreground: 38 30% 96%;
+    --destructive: 0 72% 48%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 30 15% 82%;
-    --input: 30 15% 82%;
-    --ring: 18 65% 38%;
+    --border: 220 12% 85%;
+    --input: 220 12% 85%;
+    --ring: 221 70% 46%;
 
     --radius: 0.25rem;
 
-    /* Semantic editorial tokens */
-    --ink: 25 15% 12%;
-    --ink-soft: 25 10% 30%;
-    --rule: 30 15% 78%;
-    --terracotta: 18 65% 38%;
-    --ochre: 32 55% 48%;
-    --moss: 95 20% 35%;
-    --paper: 38 30% 96%;
-    --paper-deep: 35 22% 91%;
+    --ink: 220 20% 11%;
+    --ink-soft: 220 10% 32%;
+    --rule: 220 12% 80%;
+    --terracotta: 221 70% 46%;
+    --ochre: 221 70% 46%;
+    --moss: 143 40% 35%;
+    --paper: 220 20% 98%;
+    --paper-deep: 220 16% 94%;
   }
 }
 
@@ -71,15 +69,15 @@
   }
 
   h1 {
-    @apply text-5xl md:text-7xl lg:text-[7rem] leading-[0.95] tracking-[-0.02em] font-light;
+    @apply text-4xl md:text-6xl lg:text-7xl leading-[1] tracking-[-0.02em] font-light;
   }
 
   h2 {
-    @apply text-4xl md:text-5xl lg:text-6xl leading-[1.05] tracking-[-0.015em] font-light;
+    @apply text-3xl md:text-4xl lg:text-5xl leading-[1.1] tracking-[-0.015em] font-light;
   }
 
   h3 {
-    @apply text-2xl md:text-3xl leading-tight tracking-[-0.01em] font-normal;
+    @apply text-2xl leading-tight tracking-[-0.01em] font-normal;
   }
 
   p {
@@ -94,7 +92,7 @@
 
 @layer components {
   .section {
-    @apply py-24 md:py-32 lg:py-40;
+    @apply py-20 md:py-24;
   }
 
   .container-wide {
@@ -105,14 +103,13 @@
     @apply max-w-3xl mx-auto px-6 md:px-10;
   }
 
-  /* Editorial label — small caps, mono, with leading hairline */
   .eyebrow {
-    @apply inline-flex items-center gap-3 text-[11px] uppercase tracking-[0.22em] text-muted-foreground font-mono;
+    @apply inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.2em] text-muted-foreground font-mono;
   }
 
   .eyebrow::before {
     content: "";
-    @apply w-8 h-px bg-foreground/40;
+    @apply w-4 h-px bg-foreground/30;
   }
 
   /* Display serif italic accent */
@@ -141,13 +138,12 @@
     @apply text-[hsl(var(--terracotta))] border-b border-[hsl(var(--terracotta))]/40 hover:border-[hsl(var(--terracotta))] transition-colors pb-0.5;
   }
 
-  /* Buttons — minimal editorial */
   .btn-ink {
-    @apply inline-flex items-center gap-2 bg-foreground text-background px-6 py-3 text-sm font-medium tracking-wide hover:bg-foreground/85 transition-colors;
+    @apply inline-flex items-center gap-2 bg-foreground text-background px-5 py-2.5 text-sm font-medium hover:bg-foreground/90 transition-colors;
   }
 
   .btn-outline {
-    @apply inline-flex items-center gap-2 border border-foreground/25 text-foreground px-6 py-3 text-sm font-medium tracking-wide hover:bg-foreground hover:text-background transition-colors;
+    @apply inline-flex items-center gap-2 border border-foreground/25 text-foreground px-5 py-2.5 text-sm font-medium hover:bg-foreground hover:text-background transition-colors;
   }
 
   /* Project cell — used in editorial grid */

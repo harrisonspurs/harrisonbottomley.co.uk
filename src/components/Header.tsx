@@ -1,5 +1,4 @@
-import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
 
 const Header = () => {
@@ -19,47 +18,38 @@ const Header = () => {
   };
 
   const navItems = [
-    { label: "Index", id: "top", num: "01" },
-    { label: "Work", id: "projects", num: "02" },
-    { label: "About", id: "about", num: "03" },
-    { label: "Services", id: "services", num: "04" },
-    { label: "Contact", id: "contact", num: "05" },
+    { label: "Work", id: "projects" },
+    { label: "About", id: "about" },
+    { label: "Skills", id: "skills" },
+    { label: "Contact", id: "contact" },
   ];
 
   return (
-    <motion.header
-      initial={{ y: -40, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.6, delay: 0.1 }}
+    <header
       className={`fixed top-0 left-0 right-0 z-40 transition-all duration-500 ${
-        scrolled ? "bg-background/85 backdrop-blur-md border-b border-foreground/10" : "bg-transparent"
+        scrolled ? "bg-background/95 backdrop-blur border-b border-foreground/10" : "bg-background/80"
       }`}
     >
-      <div className="container-wide py-5 flex items-center justify-between">
+      <div className="container-wide py-4 flex items-center justify-between gap-8">
         <button onClick={() => scrollToSection("top")} className="text-left group">
-          <p className="font-serif text-lg leading-none">Harrison <span className="serif-italic">Bottomley</span></p>
-          <p className="text-[10px] uppercase tracking-[0.25em] font-mono text-muted-foreground mt-1">
-            Creative Computing · Salford
+          <p className="font-serif text-xl leading-none">Harrison Bottomley</p>
+          <p className="text-[11px] uppercase tracking-[0.2em] font-mono text-muted-foreground mt-1">
+            Halifax, UK
           </p>
         </button>
 
-        {/* Desktop nav */}
-        <nav className="hidden md:flex items-center gap-8">
+        <nav className="hidden md:flex items-center gap-6">
           {navItems.map((item) => (
             <button
               key={item.id}
               onClick={() => scrollToSection(item.id)}
-              className="group flex items-baseline gap-1.5 text-sm text-foreground/70 hover:text-foreground transition-colors"
+              className="text-sm text-muted-foreground hover:text-foreground transition-colors"
             >
-              <span className="text-[10px] font-mono text-muted-foreground/60 group-hover:text-[hsl(var(--terracotta))] transition-colors">
-                {item.num}
-              </span>
-              <span className="tracking-wide">{item.label}</span>
+              {item.label}
             </button>
           ))}
         </nav>
 
-        {/* Mobile hamburger */}
         <button
           onClick={() => setMobileOpen(!mobileOpen)}
           className="md:hidden p-2 text-foreground"
@@ -69,30 +59,22 @@ const Header = () => {
         </button>
       </div>
 
-      <AnimatePresence>
-        {mobileOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-background border-b border-foreground/10 overflow-hidden"
-          >
-            <nav className="container-wide py-6 flex flex-col gap-4">
-              {navItems.map((item) => (
-                <button
-                  key={item.id}
-                  onClick={() => scrollToSection(item.id)}
-                  className="flex items-baseline gap-3 text-left"
-                >
-                  <span className="text-[10px] font-mono text-muted-foreground">{item.num}</span>
-                  <span className="font-serif text-2xl">{item.label}</span>
-                </button>
-              ))}
-            </nav>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </motion.header>
+      {mobileOpen && (
+        <div className="md:hidden bg-background border-b border-foreground/10">
+          <nav className="container-wide py-5 flex flex-col gap-3">
+            {navItems.map((item) => (
+              <button
+                key={item.id}
+                onClick={() => scrollToSection(item.id)}
+                className="text-left py-1.5 text-base text-foreground"
+              >
+                {item.label}
+              </button>
+            ))}
+          </nav>
+        </div>
+      )}
+    </header>
   );
 };
 

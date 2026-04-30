@@ -1,11 +1,9 @@
 import { useState } from "react";
-import { ArrowUpRight, Github, FileText, Globe, Star } from "lucide-react";
-import { motion } from "framer-motion";
+import { Github, FileText, Globe, Star } from "lucide-react";
 import { Link } from "react-router-dom";
 
 // Images
 import backendImg from "@/assets/backend_development.png";
-import creativeCollabImg from "@/assets/creative_collab.png";
 import iotImg from "@/assets/internet_of_things.png";
 import lightwavesImg from "@/assets/lightwaves_event.png";
 import mathPracticeImg from "@/assets/mathematical_practice.png";
@@ -319,19 +317,12 @@ const ButtonIcon = ({ icon }: { icon: ProjectButton["icon"] }) => {
   return null;
 };
 
-const spanClasses: Record<Span, string> = {
-  xl: "md:col-span-12",                    // full-width hero row
-  lg: "md:col-span-7",                     // 7 of 12
-  md: "md:col-span-6",                     // half
-  sm: "md:col-span-5",                     // 5 of 12
-};
-
-const ProjectCell = ({ project, index }: { project: Project; index: number }) => {
+const ProjectCard = ({ project }: { project: Project }) => {
   const renderBtn = (btn: ProjectButton) => {
-    const cls = "inline-flex items-center gap-1.5 text-xs font-mono uppercase tracking-wider link-quiet";
+    const cls = "inline-flex items-center gap-1.5 text-xs font-mono uppercase tracking-wide text-foreground hover:text-muted-foreground transition-colors";
     if (btn.disabled) {
       return (
-        <span key={btn.label} className="inline-flex items-center gap-1.5 text-xs font-mono uppercase tracking-wider text-muted-foreground/50 cursor-not-allowed">
+        <span key={btn.label} className="inline-flex items-center gap-1.5 text-xs font-mono uppercase tracking-wide text-muted-foreground/50 cursor-not-allowed">
           <ButtonIcon icon={btn.icon} />
           {btn.label}
         </span>
@@ -353,149 +344,84 @@ const ProjectCell = ({ project, index }: { project: Project; index: number }) =>
     );
   };
 
-  // Featured (xl) gets a horizontal layout
-  const isFeatured = project.span === "xl";
-
   return (
-    <motion.article
-      layout
-      initial={{ opacity: 0, y: 24 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-50px" }}
-      transition={{ duration: 0.6, delay: (index % 4) * 0.05 }}
-      className={`col-span-12 ${spanClasses[project.span]} group`}
+    <article
+      className={`border border-foreground/10 bg-card p-5 md:p-6 ${
+        project.featured ? "md:col-span-2" : ""
+      }`}
     >
-      <div className={isFeatured ? "grid md:grid-cols-12 gap-6 md:gap-10 items-end" : ""}>
-        {/* Image */}
-        {project.image ? (
-          <div className={`overflow-hidden bg-paper-deep border border-foreground/10 ${
-            isFeatured ? "md:col-span-7 aspect-[16/10]" :
-            project.span === "lg" ? "aspect-[16/10]" :
-            project.span === "md" ? "aspect-[4/3]" : "aspect-square"
-          }`}>
-            <img
-              src={project.image}
-              alt={project.title}
-              className="w-full h-full object-cover transition-all duration-700 group-hover:scale-[1.03] grayscale-[20%] group-hover:grayscale-0"
-            />
-          </div>
-        ) : (
-          <div className={`bg-paper-deep border border-foreground/10 flex items-center justify-center ${
-            project.span === "lg" ? "aspect-[16/10]" : "aspect-[4/3]"
-          }`}>
-            <span className="font-serif serif-italic text-2xl text-muted-foreground">No preview yet</span>
-          </div>
-        )}
+      {project.image && (
+        <div className="aspect-[16/9] overflow-hidden border border-foreground/10 bg-background">
+          <img src={project.image} alt={project.title} className="h-full w-full object-cover" />
+        </div>
+      )}
 
-        {/* Text */}
-        <div className={`mt-5 ${isFeatured ? "md:col-span-5 md:mt-0" : ""}`}>
-          {/* Meta row */}
-          <div className="flex items-center justify-between mb-3 text-[10px] font-mono uppercase tracking-[0.2em] text-muted-foreground">
-            <span>№ {project.num} · {project.badge}</span>
-            <span className="flex items-center gap-2">
-              {project.state === "in-development" && (
-                <span className="text-[hsl(var(--ochre))]">In progress</span>
-              )}
-              <span>{project.year}</span>
+      <div className="mt-5">
+        <p className="text-[11px] font-mono uppercase tracking-[0.2em] text-muted-foreground">
+          {project.badge} · {project.year}
+          {project.state === "in-development" ? " · In progress" : ""}
+        </p>
+        <h3 className="mt-2 font-serif text-2xl md:text-3xl font-light">{project.title}</h3>
+        <p className="mt-1 text-sm text-muted-foreground">{project.subtitle}</p>
+        <p className="mt-4 text-sm leading-relaxed text-foreground/85">{project.description}</p>
+
+        <div className="mt-4 flex flex-wrap gap-2">
+          {project.tech.map((tech) => (
+            <span key={tech} className="rounded-full border border-foreground/15 px-2.5 py-1 text-xs text-muted-foreground">
+              {tech}
             </span>
-          </div>
+          ))}
+        </div>
 
-          {/* Title */}
-          <h3 className={`font-serif font-light leading-tight ${
-            isFeatured ? "text-3xl md:text-5xl" :
-            project.span === "lg" ? "text-2xl md:text-3xl" : "text-xl md:text-2xl"
-          }`}>
-            {project.featured && (
-              <span className="serif-italic text-[hsl(var(--terracotta))]">★ </span>
-            )}
-            {project.title}
-          </h3>
-          <p className="text-sm text-muted-foreground mt-1 italic font-serif">{project.subtitle}</p>
-
-          {/* Description */}
-          <p className={`text-ink-soft leading-relaxed mt-4 ${
-            isFeatured ? "text-base md:text-lg" : "text-sm"
-          }`}>
-            {project.description}
-          </p>
-
-          {/* Tags */}
-          <div className="flex flex-wrap gap-x-4 gap-y-1 mt-5">
-            {project.tech.map((t) => (
-              <span key={t} className="tag">{t}</span>
-            ))}
-          </div>
-
-          {/* Buttons */}
-          <div className="flex flex-wrap gap-x-6 gap-y-3 mt-6 pt-5 border-t border-foreground/10">
-            {project.buttons.map((b) => renderBtn(b))}
-          </div>
+        <div className="mt-5 flex flex-wrap gap-x-5 gap-y-2 border-t border-foreground/10 pt-4">
+          {project.buttons.map((btn) => renderBtn(btn))}
         </div>
       </div>
-    </motion.article>
+    </article>
   );
 };
 
 const Projects = () => {
   const [active, setActive] = useState<ProjectCategory>("all");
-
   const filtered = active === "all" ? projects : projects.filter((p) => p.category.includes(active));
 
   return (
-    <section id="projects" className="section relative">
+    <section id="projects" className="section">
       <div className="container-wide">
-        {/* Header */}
-        <div className="grid grid-cols-12 gap-4 md:gap-8 mb-16 md:mb-20">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="col-span-12 md:col-span-3"
-          >
-            <p className="eyebrow">§ 02 — Selected Work</p>
-          </motion.div>
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.1 }}
-            className="col-span-12 md:col-span-9 font-serif font-light"
-          >
-            Fourteen projects, give or take — <span className="serif-italic">client work, coursework, experiments.</span>
-          </motion.h2>
-        </div>
+        <p className="text-xs font-mono uppercase tracking-[0.2em] text-muted-foreground">Projects</p>
+        <h2 className="mt-4 max-w-3xl font-serif font-light">
+          Selected work across client projects, coursework and experiments.
+        </h2>
 
-        {/* Filters */}
-        <div className="flex flex-wrap gap-x-6 gap-y-2 mb-16 pb-6 border-b border-foreground/10">
+        <div className="mt-8 flex flex-wrap items-center gap-2 border-b border-foreground/10 pb-5">
           {filters.map((f) => (
             <button
               key={f.value}
               onClick={() => setActive(f.value)}
-              className={`text-sm font-mono uppercase tracking-wider transition-colors pb-1 border-b ${
+              className={`rounded-full border px-3 py-1.5 text-xs font-mono uppercase tracking-wide transition-colors ${
                 active === f.value
-                  ? "text-foreground border-foreground"
-                  : "text-muted-foreground border-transparent hover:text-foreground"
+                  ? "border-foreground/30 bg-foreground text-background"
+                  : "border-foreground/15 text-muted-foreground hover:text-foreground"
               }`}
             >
               {f.label}
             </button>
           ))}
-          <span className="ml-auto text-xs font-mono uppercase tracking-wider text-muted-foreground self-end pb-1">
+          <span className="ml-auto text-xs font-mono uppercase tracking-wide text-muted-foreground">
             {filtered.length} {filtered.length === 1 ? "project" : "projects"}
           </span>
         </div>
 
-        {/* Editorial asymmetric grid */}
-        <motion.div layout className="grid grid-cols-12 gap-x-6 gap-y-20 md:gap-y-28">
-          {filtered.map((p, i) => (
-            <ProjectCell key={p.num} project={p} index={i} />
+        <div className="mt-8 grid grid-cols-1 gap-8 md:grid-cols-2">
+          {filtered.map((project) => (
+            <ProjectCard key={project.num} project={project} />
           ))}
-        </motion.div>
+        </div>
 
         {filtered.length === 0 && (
           <div className="text-center py-20">
-            <p className="font-serif text-2xl text-muted-foreground mb-4">Nothing in this category.</p>
-            <button onClick={() => setActive("all")} className="link-accent text-sm">
+            <p className="font-serif text-2xl text-muted-foreground mb-4">No projects in this category.</p>
+            <button onClick={() => setActive("all")} className="text-sm underline underline-offset-4">
               Show all projects
             </button>
           </div>
