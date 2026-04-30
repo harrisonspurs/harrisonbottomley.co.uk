@@ -1,135 +1,81 @@
-import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 
 interface SkillGroup {
   title: string;
-  gradient: string;
-  skills: { name: string; level: number }[];
+  num: string;
+  skills: string[];
 }
 
 const skillGroups: SkillGroup[] = [
   {
     title: "Languages",
-    gradient: "from-[#a855f7] to-[#6366f1]",
-    skills: [
-      { name: "HTML/CSS", level: 95 },
-      { name: "JavaScript", level: 90 },
-      { name: "Python", level: 85 },
-      { name: "C++", level: 70 },
-      { name: "GLSL", level: 60 },
-    ],
-  },
-  {
-    title: "Tools",
-    gradient: "from-[#f59e0b] to-[#ef4444]",
-    skills: [
-      { name: "VS Code", level: 95 },
-      { name: "Git / GitHub", level: 85 },
-      { name: "Figma", level: 75 },
-      { name: "Blender", level: 70 },
-      { name: "Unreal Engine", level: 65 },
-    ],
+    num: "01",
+    skills: ["HTML / CSS", "JavaScript / TypeScript", "Python", "C++", "GLSL"],
   },
   {
     title: "Frameworks",
-    gradient: "from-[#3b82f6] to-[#06b6d4]",
-    skills: [
-      { name: "React", level: 85 },
-      { name: "Node.js", level: 80 },
-      { name: "p5.js", level: 80 },
-      { name: "Express.js", level: 75 },
-      { name: "Three.js", level: 70 },
-      { name: "TensorFlow", level: 65 },
-    ],
+    num: "02",
+    skills: ["React", "Node.js", "Express", "p5.js", "Three.js", "TensorFlow"],
   },
   {
-    title: "Creative & Specialisations",
-    gradient: "from-[#ec4899] to-[#a855f7]",
-    skills: [
-      { name: "Generative Art", level: 80 },
-      { name: "Backend Development", level: 80 },
-      { name: "UI/UX Design", level: 75 },
-      { name: "Machine Learning", level: 70 },
-      { name: "3D Modelling", level: 70 },
-      { name: "XR Development", level: 65 },
-    ],
+    title: "Tools",
+    num: "03",
+    skills: ["VS Code", "Git / GitHub", "Figma", "Blender", "Unreal Engine 5", "Arduino"],
+  },
+  {
+    title: "Specialisms",
+    num: "04",
+    skills: ["Generative Art", "Backend / APIs", "UI / UX", "Machine Learning", "3D Modelling", "XR Development"],
   },
 ];
-
-const SkillBar = ({ name, level, gradient, delay }: { name: string; level: number; gradient: string; delay: number }) => {
-  const [visible, setVisible] = useState(false);
-  const ref = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(([entry]) => {
-      if (entry.isIntersecting) setVisible(true);
-    }, { threshold: 0.3 });
-    if (ref.current) observer.observe(ref.current);
-    return () => observer.disconnect();
-  }, []);
-
-  return (
-    <div ref={ref} className="group">
-      <div className="flex justify-between mb-1.5">
-        <span className="text-sm text-muted-foreground group-hover:text-foreground transition-colors">{name}</span>
-        <span className="text-sm font-mono text-muted-foreground">{level}%</span>
-      </div>
-      <div className="progress-bar">
-        <div
-          className={`progress-fill bg-gradient-to-r ${gradient}`}
-          style={{
-            width: visible ? `${level}%` : "0%",
-            transitionDelay: `${delay}ms`,
-            boxShadow: visible ? `0 0 12px hsl(var(--blue) / 0.3)` : "none",
-          }}
-        />
-      </div>
-    </div>
-  );
-};
 
 const Skills = () => {
   return (
     <section id="skills" className="section relative">
-      <div className="absolute bottom-0 left-0 w-1/3 h-1/3 bg-gradient-to-tr from-purple/5 to-transparent pointer-events-none" />
+      <div className="container-wide">
+        {/* Header */}
+        <div className="grid grid-cols-12 gap-4 md:gap-8 mb-16 md:mb-20">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="col-span-12 md:col-span-3"
+          >
+            <p className="eyebrow">§ Capabilities</p>
+          </motion.div>
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.1 }}
+            className="col-span-12 md:col-span-9 font-serif font-light"
+          >
+            What I work <span className="serif-italic">with</span>.
+          </motion.h2>
+        </div>
 
-      <div className="container-wide relative z-10">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="max-w-2xl mb-16"
-        >
-          <span className="section-label">Capabilities</span>
-          <h2 className="mb-4">Technical Proficiency</h2>
-          <p className="text-lg text-muted-foreground">
-            Skills developed through coursework and professional projects.
-          </p>
-        </motion.div>
-
-        <div className="grid md:grid-cols-2 gap-8">
-          {skillGroups.map((group, gi) => (
+        {/* Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-y-12 lg:gap-x-10 border-t border-foreground/10 pt-10">
+          {skillGroups.map((g, gi) => (
             <motion.div
-              key={group.title}
+              key={g.title}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: gi * 0.1 }}
-              className="glass-card p-6 md:p-8"
+              transition={{ delay: gi * 0.08 }}
+              className="space-y-4"
             >
-              <h3 className="text-lg font-semibold mb-6 text-foreground">{group.title}</h3>
-              <div className="space-y-5">
-                {group.skills.map((skill, si) => (
-                  <SkillBar
-                    key={skill.name}
-                    name={skill.name}
-                    level={skill.level}
-                    gradient={group.gradient}
-                    delay={si * 100}
-                  />
-                ))}
+              <div className="flex items-baseline gap-3 pb-3 border-b border-foreground/10">
+                <span className="text-[10px] font-mono text-muted-foreground">{g.num}</span>
+                <h3 className="font-serif text-xl">{g.title}</h3>
               </div>
+              <ul className="space-y-2">
+                {g.skills.map((s) => (
+                  <li key={s} className="text-sm text-ink-soft">
+                    {s}
+                  </li>
+                ))}
+              </ul>
             </motion.div>
           ))}
         </div>

@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT,WONK@9..144,300..900,0..100,0..1&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -6,43 +6,46 @@
 
 @layer base {
   :root {
-    --background: 0 0% 4%;
-    --foreground: 0 0% 100%;
+    /* Editorial cream palette */
+    --background: 38 30% 96%;        /* warm off-white / cream */
+    --foreground: 25 15% 12%;        /* deep ink */
 
-    --card: 0 0% 10%;
-    --card-foreground: 0 0% 100%;
+    --card: 38 25% 93%;
+    --card-foreground: 25 15% 12%;
 
-    --popover: 0 0% 8%;
-    --popover-foreground: 0 0% 100%;
+    --popover: 38 30% 96%;
+    --popover-foreground: 25 15% 12%;
 
-    --primary: 239 84% 67%;
-    --primary-foreground: 0 0% 100%;
+    --primary: 18 65% 38%;           /* terracotta */
+    --primary-foreground: 38 30% 96%;
 
-    --secondary: 0 0% 15%;
-    --secondary-foreground: 0 0% 85%;
+    --secondary: 35 18% 88%;
+    --secondary-foreground: 25 15% 25%;
 
-    --muted: 0 0% 15%;
-    --muted-foreground: 0 0% 63%;
+    --muted: 35 15% 90%;
+    --muted-foreground: 25 8% 42%;
 
-    --accent: 271 91% 65%;
-    --accent-foreground: 0 0% 100%;
+    --accent: 30 50% 45%;            /* warm ochre */
+    --accent-foreground: 38 30% 96%;
 
-    --destructive: 0 84% 60%;
-    --destructive-foreground: 0 0% 100%;
+    --destructive: 0 60% 45%;
+    --destructive-foreground: 38 30% 96%;
 
-    --border: 0 0% 16%;
-    --input: 0 0% 16%;
-    --ring: 239 84% 67%;
+    --border: 30 15% 82%;
+    --input: 30 15% 82%;
+    --ring: 18 65% 38%;
 
-    --radius: 0.75rem;
+    --radius: 0.25rem;
 
-    /* Custom palette */
-    --blue: 239 84% 67%;
-    --pink: 330 81% 60%;
-    --purple: 271 91% 65%;
-    --orange: 38 92% 50%;
-    --green: 160 84% 39%;
-    --cyan: 187 92% 41%;
+    /* Semantic editorial tokens */
+    --ink: 25 15% 12%;
+    --ink-soft: 25 10% 30%;
+    --rule: 30 15% 78%;
+    --terracotta: 18 65% 38%;
+    --ochre: 32 55% 48%;
+    --moss: 95 20% 35%;
+    --paper: 38 30% 96%;
+    --paper-deep: 35 22% 91%;
   }
 }
 
@@ -51,25 +54,32 @@
     @apply border-border;
   }
 
+  html {
+    scroll-behavior: smooth;
+  }
+
   body {
     @apply bg-background text-foreground antialiased;
     font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    font-feature-settings: "ss01", "cv11";
   }
 
   h1, h2, h3, h4, h5, h6 {
-    @apply font-bold tracking-tight text-foreground;
+    font-family: 'Fraunces', Georgia, serif;
+    @apply text-foreground;
+    font-feature-settings: "ss01";
   }
 
   h1 {
-    @apply text-4xl md:text-5xl lg:text-7xl leading-[1.05];
+    @apply text-5xl md:text-7xl lg:text-[7rem] leading-[0.95] tracking-[-0.02em] font-light;
   }
 
   h2 {
-    @apply text-3xl md:text-4xl lg:text-5xl leading-tight;
+    @apply text-4xl md:text-5xl lg:text-6xl leading-[1.05] tracking-[-0.015em] font-light;
   }
 
   h3 {
-    @apply text-xl md:text-2xl leading-snug;
+    @apply text-2xl md:text-3xl leading-tight tracking-[-0.01em] font-normal;
   }
 
   p {
@@ -77,76 +87,92 @@
   }
 
   ::selection {
-    background: hsl(var(--primary) / 0.3);
-    color: hsl(var(--foreground));
+    background: hsl(var(--terracotta) / 0.25);
+    color: hsl(var(--ink));
   }
 }
 
 @layer components {
   .section {
-    @apply py-20 md:py-28 lg:py-36;
+    @apply py-24 md:py-32 lg:py-40;
   }
 
   .container-wide {
-    @apply max-w-6xl mx-auto px-6 md:px-8;
+    @apply max-w-[1280px] mx-auto px-6 md:px-10 lg:px-16;
   }
 
   .container-narrow {
-    @apply max-w-3xl mx-auto px-6 md:px-8;
+    @apply max-w-3xl mx-auto px-6 md:px-10;
   }
 
-  .section-label {
-    @apply text-xs font-semibold uppercase tracking-[0.2em] text-transparent bg-clip-text bg-gradient-to-r from-[hsl(var(--blue))] to-[hsl(var(--pink))] mb-4 inline-block;
+  /* Editorial label — small caps, mono, with leading hairline */
+  .eyebrow {
+    @apply inline-flex items-center gap-3 text-[11px] uppercase tracking-[0.22em] text-muted-foreground font-mono;
   }
 
-  .gradient-text {
-    @apply text-transparent bg-clip-text bg-gradient-to-r from-[hsl(var(--blue))] via-[hsl(var(--purple))] to-[hsl(var(--pink))];
+  .eyebrow::before {
+    content: "";
+    @apply w-8 h-px bg-foreground/40;
   }
 
-  .glass-card {
-    @apply bg-card/60 backdrop-blur-md border border-border rounded-2xl;
+  /* Display serif italic accent */
+  .serif-italic {
+    font-family: 'Fraunces', Georgia, serif;
+    font-style: italic;
+    font-weight: 300;
   }
 
-  .project-card {
-    @apply bg-card border border-border rounded-xl overflow-hidden transition-all duration-500;
+  /* Hairline rule */
+  .rule {
+    @apply border-t border-foreground/10;
   }
 
-  .project-card:hover {
-    @apply border-[hsl(var(--blue))/0.4] shadow-lg shadow-[hsl(var(--blue))/0.05] -translate-y-2;
+  /* Skill / tag chip — minimal, no fill */
+  .tag {
+    @apply text-[11px] font-mono tracking-wide text-muted-foreground border-b border-foreground/15 pb-0.5;
   }
 
-  .skill-pill {
-    @apply text-xs font-medium px-3 py-1.5 bg-secondary text-secondary-foreground rounded-full border border-border transition-all duration-300;
+  /* Subtle link */
+  .link-quiet {
+    @apply text-foreground border-b border-foreground/30 hover:border-foreground transition-colors pb-0.5;
   }
 
-  .skill-pill:hover {
-    @apply bg-[hsl(var(--blue))/0.1] border-[hsl(var(--blue))/0.3] text-[hsl(var(--blue))];
+  .link-accent {
+    @apply text-[hsl(var(--terracotta))] border-b border-[hsl(var(--terracotta))]/40 hover:border-[hsl(var(--terracotta))] transition-colors pb-0.5;
   }
 
-  .btn-primary {
-    @apply bg-gradient-to-r from-[hsl(var(--blue))] to-[hsl(var(--purple))] text-white font-semibold px-8 py-4 rounded-xl transition-all duration-300 hover:shadow-lg hover:shadow-[hsl(var(--blue))/0.25] hover:-translate-y-0.5;
+  /* Buttons — minimal editorial */
+  .btn-ink {
+    @apply inline-flex items-center gap-2 bg-foreground text-background px-6 py-3 text-sm font-medium tracking-wide hover:bg-foreground/85 transition-colors;
   }
 
-  .btn-secondary {
-    @apply border border-border text-foreground font-medium px-8 py-4 rounded-xl transition-all duration-300 hover:border-[hsl(var(--blue))/0.5] hover:bg-[hsl(var(--blue))/0.05];
+  .btn-outline {
+    @apply inline-flex items-center gap-2 border border-foreground/25 text-foreground px-6 py-3 text-sm font-medium tracking-wide hover:bg-foreground hover:text-background transition-colors;
   }
 
-  .progress-bar {
-    @apply h-2 rounded-full bg-secondary overflow-hidden;
-  }
-
-  .progress-fill {
-    @apply h-full rounded-full transition-all duration-1000 ease-out;
+  /* Project cell — used in editorial grid */
+  .project-cell {
+    @apply group block;
   }
 }
 
 @layer utilities {
-  .fade-in {
-    animation: fadeIn 0.6s ease-out forwards;
+  .font-serif {
+    font-family: 'Fraunces', Georgia, serif;
   }
 
-  @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(16px); }
-    to { opacity: 1; transform: translateY(0); }
+  .font-mono {
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  /* Paper texture (super subtle grain) */
+  .grain::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0.035;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   }
 }
