@@ -13,6 +13,7 @@ import mathsComputingImg from "@/assets/maths_for_computing.png";
 import xrDesignImg from "@/assets/xr_design.png";
 import fullstackImg from "@/assets/fullstack_development.png";
 import aiStudyImg from "@/assets/ai_study_tracking.png";
+import cityscapeImg from "@/assets/cityscape_sunset.png";
 
 type ProjectCategory = "all" | "client" | "university" | "in-progress";
 
@@ -242,14 +243,16 @@ const projects: Project[] = [
     title: "Creative Coding Foundations",
     subtitle: "Programming for Creative Expression",
     description:
-      "Foundational projects exploring creative applications of programming and computational thinking. Interactive visuals and generative systems.",
+      "Pixel-art sunset cityscape sketch built with p5.js — exploring generative visuals, layered composition and atmospheric colour. Live on OpenProcessing.",
     tech: ["JavaScript", "p5.js", "HTML/CSS", "Canvas API"],
     badge: "UNIVERSITY",
     badgeColor: "bg-purple/20 text-purple",
     category: ["university"],
-    stateBadge: "in-development",
+    image: cityscapeImg,
+    stateBadge: "live",
     buttons: [
-      { label: "View Code", href: "https://github.com/harrisonspurs", icon: "code" },
+      { label: "View Live Demo", href: "https://openprocessing.org/sketch/2590894", icon: "live" },
+      { label: "View Code", href: "https://github.com/harrisonspurs/City_scene", icon: "code" },
       { label: "View Documentation", href: "/docs/creative_coding.pdf", icon: "docs" },
     ],
   },
