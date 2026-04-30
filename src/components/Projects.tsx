@@ -10,6 +10,9 @@ import iotImg from "@/assets/internet_of_things.png";
 import lightwavesImg from "@/assets/lightwaves_event.png";
 import mathPracticeImg from "@/assets/mathematical_practice.png";
 import mathsComputingImg from "@/assets/maths_for_computing.png";
+import xrDesignImg from "@/assets/xr_design.png";
+import fullstackImg from "@/assets/fullstack_development.png";
+import aiStudyImg from "@/assets/ai_study_tracking.png";
 
 type ProjectCategory = "all" | "client" | "university" | "in-progress";
 
@@ -217,13 +220,14 @@ const projects: Project[] = [
   // ── RECENTLY SUBMITTED ────────────────────────────────────────────────────
   {
     title: "AI Study Tracking",
-    subtitle: "Machine Learning & AI Development",
+    subtitle: "Artificial Intelligence Module",
     description:
-      "Recently submitted project applying machine learning to study habits and progress tracking. Explores supervised learning, data analysis, and intelligent feedback systems.",
-    tech: ["Python", "Machine Learning", "Data Analysis", "AI"],
+      "Recently submitted AI study tracker that uses computer vision to detect focus during study sessions. Applies machine learning to monitor attention and provide real-time feedback on study habits.",
+    tech: ["Python", "Computer Vision", "Machine Learning", "AI"],
     badge: "UNIVERSITY",
     badgeColor: "bg-purple/20 text-purple",
     category: ["university"],
+    image: aiStudyImg,
     stateBadge: "live",
     buttons: [
       { label: "View Code", href: "https://github.com/harrisonspurs/Ai_study_tracking", icon: "code" },
@@ -232,15 +236,17 @@ const projects: Project[] = [
   },
   {
     title: "Full-Stack Development",
-    subtitle: "End-to-End Web Applications",
+    subtitle: "Student Focus Web Application",
     description:
-      "Recently submitted full-stack project covering frontend, backend, databases and deployment. Built with modern frameworks to deliver a complete working web application.",
-    tech: ["React", "Node.js", "Express", "Database", "Full-Stack"],
+      "Recently submitted full-stack project — a student focus tracking web app with session logging, analytics charts, and progress dashboards. Live at studentfocus.me.",
+    tech: ["React", "Node.js", "Charts", "Database", "Full-Stack"],
     badge: "UNIVERSITY",
     badgeColor: "bg-purple/20 text-purple",
     category: ["university"],
+    image: fullstackImg,
     stateBadge: "live",
     buttons: [
+      { label: "View Live Demo", href: "https://studentfocus.me/", icon: "live" },
       { label: "View Code", href: "https://github.com/harrisonspurs/Fullstack_Development", icon: "code" },
       { label: "View Documentation", icon: "docs", disabled: true },
     ],
@@ -249,13 +255,15 @@ const projects: Project[] = [
     title: "XR Design",
     subtitle: "Extended Reality Experiences",
     description:
-      "Recently submitted XR project exploring VR, AR, and mixed reality development. Creating immersive 3D experiences and spatial computing applications.",
-    tech: ["Unity", "XR", "3D Design", "WebXR"],
+      "Recently submitted XR project — an interactive 3D rooftop scene with first-person controls (WASD + mouse). Explores spatial computing, environmental design and immersive WebXR experiences.",
+    tech: ["WebXR", "Three.js", "3D Design", "First-Person Controls"],
     badge: "UNIVERSITY",
     badgeColor: "bg-purple/20 text-purple",
     category: ["university"],
+    image: xrDesignImg,
     stateBadge: "live",
     buttons: [
+      { label: "View Live Demo", href: "https://xrdesign.vercel.app/", icon: "live" },
       { label: "View Code", href: "https://github.com/harrisonspurs/XR-Design", icon: "code" },
       { label: "View Documentation", icon: "docs", disabled: true },
     ],
