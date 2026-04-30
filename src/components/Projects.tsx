@@ -14,6 +14,9 @@ import xrDesignImg from "@/assets/xr_design.png";
 import fullstackImg from "@/assets/fullstack_development.png";
 import aiStudyImg from "@/assets/ai_study_tracking.png";
 import cityscapeImg from "@/assets/cityscape_sunset.png";
+import hbottomleyImg from "@/assets/hbottomley.png";
+import topfrogImg from "@/assets/topfrog.png";
+import wearhouseImg from "@/assets/wearhouse.png";
 
 type ProjectCategory = "all" | "client" | "university" | "in-progress";
 
