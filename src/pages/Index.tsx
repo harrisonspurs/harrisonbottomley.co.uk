@@ -15,14 +15,14 @@ const Index = () => {
   return (
     <>
       {!loaded && <LoadingScreen onComplete={() => setLoaded(true)} />}
-      <div className={`min-h-screen bg-background transition-opacity duration-700 ${loaded ? "opacity-100" : "opacity-0"}`}>
+      <div className={`min-h-screen bg-background grain transition-opacity duration-700 ${loaded ? "opacity-100" : "opacity-0"}`}>
         <Header />
-        <main>
+        <main className="relative z-10">
           <Hero />
-          <Services />
           <Projects />
-          <Skills />
           <About />
+          <Skills />
+          <Services />
           <Contact />
         </main>
         <Footer />
