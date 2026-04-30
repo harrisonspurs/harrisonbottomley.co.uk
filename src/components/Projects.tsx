@@ -39,6 +39,57 @@ interface Project {
 }
 
 const projects: Project[] = [
+  // ── RECENTLY SUBMITTED ────────────────────────────────────────────────────
+  {
+    title: "AI Study Tracking",
+    subtitle: "Artificial Intelligence Module",
+    description:
+      "Recently submitted AI study tracker that uses computer vision to detect focus during study sessions. Applies machine learning to monitor attention and provide real-time feedback on study habits.",
+    tech: ["Python", "Computer Vision", "Machine Learning", "AI"],
+    badge: "UNIVERSITY",
+    badgeColor: "bg-purple/20 text-purple",
+    category: ["university"],
+    image: aiStudyImg,
+    stateBadge: "live",
+    buttons: [
+      { label: "View Code", href: "https://github.com/harrisonspurs/Ai_study_tracking", icon: "code" },
+      { label: "View Documentation", icon: "docs", disabled: true },
+    ],
+  },
+  {
+    title: "Full-Stack Development",
+    subtitle: "Student Focus Web Application",
+    description:
+      "Recently submitted full-stack project — a student focus tracking web app with session logging, analytics charts, and progress dashboards. Live at studentfocus.me.",
+    tech: ["React", "Node.js", "Charts", "Database", "Full-Stack"],
+    badge: "UNIVERSITY",
+    badgeColor: "bg-purple/20 text-purple",
+    category: ["university"],
+    image: fullstackImg,
+    stateBadge: "live",
+    buttons: [
+      { label: "View Live Demo", href: "https://studentfocus.me/", icon: "live" },
+      { label: "View Code", href: "https://github.com/harrisonspurs/Fullstack_Development", icon: "code" },
+      { label: "View Documentation", icon: "docs", disabled: true },
+    ],
+  },
+  {
+    title: "XR Design",
+    subtitle: "Extended Reality Experiences",
+    description:
+      "Recently submitted XR project — an interactive 3D rooftop scene with first-person controls (WASD + mouse). Explores spatial computing, environmental design and immersive WebXR experiences.",
+    tech: ["WebXR", "Three.js", "3D Design", "First-Person Controls"],
+    badge: "UNIVERSITY",
+    badgeColor: "bg-purple/20 text-purple",
+    category: ["university"],
+    image: xrDesignImg,
+    stateBadge: "live",
+    buttons: [
+      { label: "View Live Demo", href: "https://xrdesign.vercel.app/", icon: "live" },
+      { label: "View Code", href: "https://github.com/harrisonspurs/XR-Design", icon: "code" },
+      { label: "View Documentation", icon: "docs", disabled: true },
+    ],
+  },
   // ── CLIENT WORK ───────────────────────────────────────────────────────────
   {
     title: "HBottomley Ltd",
@@ -215,57 +266,6 @@ const projects: Project[] = [
     buttons: [
       { label: "View Code", href: "https://github.com/harrisonspurs", icon: "code" },
       { label: "View Documentation", href: "/docs/web_technologies.pdf", icon: "docs" },
-    ],
-  },
-  // ── RECENTLY SUBMITTED ────────────────────────────────────────────────────
-  {
-    title: "AI Study Tracking",
-    subtitle: "Artificial Intelligence Module",
-    description:
-      "Recently submitted AI study tracker that uses computer vision to detect focus during study sessions. Applies machine learning to monitor attention and provide real-time feedback on study habits.",
-    tech: ["Python", "Computer Vision", "Machine Learning", "AI"],
-    badge: "UNIVERSITY",
-    badgeColor: "bg-purple/20 text-purple",
-    category: ["university"],
-    image: aiStudyImg,
-    stateBadge: "live",
-    buttons: [
-      { label: "View Code", href: "https://github.com/harrisonspurs/Ai_study_tracking", icon: "code" },
-      { label: "View Documentation", icon: "docs", disabled: true },
-    ],
-  },
-  {
-    title: "Full-Stack Development",
-    subtitle: "Student Focus Web Application",
-    description:
-      "Recently submitted full-stack project — a student focus tracking web app with session logging, analytics charts, and progress dashboards. Live at studentfocus.me.",
-    tech: ["React", "Node.js", "Charts", "Database", "Full-Stack"],
-    badge: "UNIVERSITY",
-    badgeColor: "bg-purple/20 text-purple",
-    category: ["university"],
-    image: fullstackImg,
-    stateBadge: "live",
-    buttons: [
-      { label: "View Live Demo", href: "https://studentfocus.me/", icon: "live" },
-      { label: "View Code", href: "https://github.com/harrisonspurs/Fullstack_Development", icon: "code" },
-      { label: "View Documentation", icon: "docs", disabled: true },
-    ],
-  },
-  {
-    title: "XR Design",
-    subtitle: "Extended Reality Experiences",
-    description:
-      "Recently submitted XR project — an interactive 3D rooftop scene with first-person controls (WASD + mouse). Explores spatial computing, environmental design and immersive WebXR experiences.",
-    tech: ["WebXR", "Three.js", "3D Design", "First-Person Controls"],
-    badge: "UNIVERSITY",
-    badgeColor: "bg-purple/20 text-purple",
-    category: ["university"],
-    image: xrDesignImg,
-    stateBadge: "live",
-    buttons: [
-      { label: "View Live Demo", href: "https://xrdesign.vercel.app/", icon: "live" },
-      { label: "View Code", href: "https://github.com/harrisonspurs/XR-Design", icon: "code" },
-      { label: "View Documentation", icon: "docs", disabled: true },
     ],
   },
 ];
