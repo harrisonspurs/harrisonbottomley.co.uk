@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ExternalLink, Github, FileText, Clock, ArrowRight, Globe, Star } from "lucide-react";
+import { ArrowUpRight, Github, FileText, Globe, Star } from "lucide-react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 
@@ -19,6 +19,7 @@ import topfrogImg from "@/assets/topfrog.png";
 import wearhouseImg from "@/assets/wearhouse.png";
 
 type ProjectCategory = "all" | "client" | "university" | "in-progress";
+type Span = "sm" | "md" | "lg" | "xl";
 
 interface ProjectButton {
   label: string;
@@ -28,415 +29,407 @@ interface ProjectButton {
 }
 
 interface Project {
+  num: string;
+  year: string;
   title: string;
   subtitle: string;
   description: string;
   tech: string[];
-  badge: string;
-  badgeColor: string;
+  badge: "CLIENT" | "UNIVERSITY";
   category: ProjectCategory[];
-  status?: string;
   image?: string;
   buttons: ProjectButton[];
   featured?: boolean;
-  stateBadge?: "live" | "in-development" | "coming-soon";
+  state: "live" | "in-development";
+  span: Span; // editorial grid span
 }
 
 const projects: Project[] = [
-  // ── RECENTLY SUBMITTED ────────────────────────────────────────────────────
+  // ── FEATURED — Media City ──────────────────────────────────────────────
   {
-    title: "AI Study Tracking",
-    subtitle: "Artificial Intelligence Module",
+    num: "01",
+    year: "2024",
+    title: "Orbit Fall — Media City Light Waves",
+    subtitle: "Public installation · Unreal Engine 5",
     description:
-      "Recently submitted AI study tracker that uses computer vision to detect focus during study sessions. Applies machine learning to monitor attention and provide real-time feedback on study habits.",
-    tech: ["Python", "Computer Vision", "Machine Learning", "AI"],
+      "A space-survival game built in Unreal Engine 5 and shown on a public screen at MediaCityUK during the Light Waves festival. Hundreds of visitors played it across the weekend — my first real taste of putting work in front of an audience.",
+    tech: ["Unreal Engine 5", "Blueprint", "Game Design", "Event Production"],
     badge: "UNIVERSITY",
-    badgeColor: "bg-purple/20 text-purple",
-    category: ["university"],
-    image: aiStudyImg,
-    stateBadge: "live",
-    buttons: [
-      { label: "View Code", href: "https://github.com/harrisonspurs/Ai_study_tracking", icon: "code" },
-      { label: "View Documentation", href: "/docs/ai_study_tracking.pdf", icon: "docs" },
-    ],
-  },
-  {
-    title: "Full-Stack Development",
-    subtitle: "Student Focus Web Application",
-    description:
-      "Recently submitted full-stack project — a student focus tracking web app with session logging, analytics charts, and progress dashboards. Live at studentfocus.me.",
-    tech: ["React", "Node.js", "Charts", "Database", "Full-Stack"],
-    badge: "UNIVERSITY",
-    badgeColor: "bg-purple/20 text-purple",
-    category: ["university"],
-    image: fullstackImg,
-    stateBadge: "live",
-    buttons: [
-      { label: "View Live Demo", href: "https://studentfocus.me/", icon: "live" },
-      { label: "View Code", href: "https://github.com/harrisonspurs/Fullstack_Development", icon: "code" },
-      { label: "View Documentation", href: "/docs/fullstack_development.pdf", icon: "docs" },
-    ],
-  },
-  {
-    title: "XR Design",
-    subtitle: "Extended Reality Experiences",
-    description:
-      "Recently submitted XR project — an interactive 3D rooftop scene with first-person controls (WASD + mouse). Explores spatial computing, environmental design and immersive WebXR experiences.",
-    tech: ["WebXR", "Three.js", "3D Design", "First-Person Controls"],
-    badge: "UNIVERSITY",
-    badgeColor: "bg-purple/20 text-purple",
-    category: ["university"],
-    image: xrDesignImg,
-    stateBadge: "live",
-    buttons: [
-      { label: "View Live Demo", href: "https://xrdesign.vercel.app/", icon: "live" },
-      { label: "View Code", href: "https://github.com/harrisonspurs/XR-Design", icon: "code" },
-      { label: "View Documentation", href: "/docs/xr_design.pdf", icon: "docs" },
-    ],
-  },
-  // ── CLIENT WORK ───────────────────────────────────────────────────────────
-  {
-    title: "HBottomley Ltd",
-    subtitle: "Mechanic Repairs & Haulage Company",
-    description:
-      "Professional website for a local haulage and mechanics business, featuring services overview, contact information, and company details.",
-    tech: ["HTML/CSS", "JavaScript", "React", "Lovable"],
-    badge: "CLIENT WORK",
-    badgeColor: "bg-blue/20 text-blue",
-    category: ["client"],
-    image: hbottomleyImg,
-    stateBadge: "live",
-    buttons: [
-      { label: "View Live Site", href: "https://hbottomleyltd.lovable.app/", icon: "live" },
-      { label: "View Code", icon: "code", disabled: true },
-    ],
-  },
-  {
-    title: "Top Frog Records",
-    subtitle: "Independent Record Label",
-    description:
-      "Minimal black and white website for an independent record label, directing visitors to Discogs and contact information.",
-    tech: ["HTML/CSS", "JavaScript", "React", "Lovable"],
-    badge: "CLIENT WORK",
-    badgeColor: "bg-blue/20 text-blue",
-    category: ["client"],
-    image: topfrogImg,
-    stateBadge: "live",
-    buttons: [
-      { label: "View Live Site", href: "https://topfrogrecords.lovable.app/", icon: "live" },
-      { label: "View Code", icon: "code", disabled: true },
-    ],
-  },
-  {
-    title: "The Wearhouse Company",
-    subtitle: "Clothing Sales Business",
-    description:
-      "E-commerce focused website for a clothing sales business with product showcase and contact features.",
-    tech: ["HTML/CSS", "JavaScript", "React", "Lovable"],
-    badge: "CLIENT WORK",
-    badgeColor: "bg-blue/20 text-blue",
-    category: ["client"],
-    image: wearhouseImg,
-    stateBadge: "live",
-    buttons: [
-      { label: "View Live Site", href: "https://thewearhousecompany.lovable.app/", icon: "live" },
-      { label: "View Code", icon: "code", disabled: true },
-    ],
-  },
-  // ── UNIVERSITY – COMPLETED ─────────────────────────────────────────────────
-  {
-    title: "Backend Development Projects",
-    subtitle: "Server-Side Programming & APIs",
-    description:
-      "Collection of backend projects focusing on server architecture, databases, and API development. Coursework includes REST APIs, authentication systems, and database design.",
-    tech: ["Node.js", "Python", "MongoDB", "Express.js", "PostgreSQL"],
-    badge: "UNIVERSITY",
-    badgeColor: "bg-purple/20 text-purple",
-    category: ["university"],
-    image: backendImg,
-    stateBadge: "live",
-    buttons: [
-      { label: "View Code", href: "https://github.com/harrisonspurs", icon: "code" },
-      { label: "View Documentation", href: "/docs/backend_development.pdf", icon: "docs" },
-    ],
-  },
-  // ── CREATIVE COLLAB (Featured – 5th position) ──────────────────────────────
-  {
-    title: "Creative Collaboration — Media City Light Waves",
-    subtitle: "Interactive Game Installation · Public Exhibition",
-    description:
-      "Showcased an original Unreal Engine game at the Media City Light Waves public event as part of the Creative Collaboration module. Interactive installation attracting hundreds of visitors and demonstrating real-world application of game design skills.",
-    tech: ["Unreal Engine", "Game Design", "Blueprint Scripting", "Event Production"],
-    badge: "UNIVERSITY",
-    badgeColor: "bg-purple/20 text-purple",
     category: ["university"],
     image: lightwavesImg,
     featured: true,
-    stateBadge: "live",
+    state: "live",
+    span: "xl",
     buttons: [
-      { label: "View Event Gallery", href: "/projects/media-city-light-waves", icon: "gallery" },
-      { label: "View Code", icon: "code", disabled: true },
-      { label: "View Documentation", icon: "docs", disabled: true },
+      { label: "Event gallery", href: "/projects/media-city-light-waves", icon: "gallery" },
+    ],
+  },
+
+  // ── RECENTLY SUBMITTED ─────────────────────────────────────────────────
+  {
+    num: "02",
+    year: "2026",
+    title: "AI Study Tracking",
+    subtitle: "Computer vision · Focus detection",
+    description:
+      "A study tracker that uses computer vision to detect focus during sessions and gives real-time feedback on attention. Built for the AI module.",
+    tech: ["Python", "Computer Vision", "ML"],
+    badge: "UNIVERSITY",
+    category: ["university"],
+    image: aiStudyImg,
+    state: "live",
+    span: "md",
+    buttons: [
+      { label: "Code", href: "https://github.com/harrisonspurs/Ai_study_tracking", icon: "code" },
+      { label: "Docs", href: "/docs/ai_study_tracking.pdf", icon: "docs" },
     ],
   },
   {
-    title: "Interaction Design & IoT",
-    subtitle: "Physical Computing Projects",
+    num: "03",
+    year: "2026",
+    title: "Student Focus",
+    subtitle: "Full-stack web app",
     description:
-      "Internet of Things projects combining hardware and software for interactive experiences. Sensor integration and embedded systems programming.",
-    tech: ["Arduino", "Python", "JavaScript", "Sensors", "MQTT"],
+      "A full-stack web app for logging study sessions, with analytics charts and progress dashboards. Live at studentfocus.me.",
+    tech: ["React", "Node.js", "Charts", "Database"],
     badge: "UNIVERSITY",
-    badgeColor: "bg-purple/20 text-purple",
+    category: ["university"],
+    image: fullstackImg,
+    state: "live",
+    span: "md",
+    buttons: [
+      { label: "Live site", href: "https://studentfocus.me/", icon: "live" },
+      { label: "Code", href: "https://github.com/harrisonspurs/Fullstack_Development", icon: "code" },
+      { label: "Docs", href: "/docs/fullstack_development.pdf", icon: "docs" },
+    ],
+  },
+  {
+    num: "04",
+    year: "2026",
+    title: "XR Design — Rooftop Scene",
+    subtitle: "WebXR · First-person 3D",
+    description:
+      "An interactive 3D rooftop you can walk around in the browser using WASD and mouse. A spatial-design experiment for the XR module.",
+    tech: ["WebXR", "Three.js", "3D"],
+    badge: "UNIVERSITY",
+    category: ["university"],
+    image: xrDesignImg,
+    state: "live",
+    span: "lg",
+    buttons: [
+      { label: "Live demo", href: "https://xrdesign.vercel.app/", icon: "live" },
+      { label: "Code", href: "https://github.com/harrisonspurs/XR-Design", icon: "code" },
+      { label: "Docs", href: "/docs/xr_design.pdf", icon: "docs" },
+    ],
+  },
+
+  // ── CLIENT WORK ────────────────────────────────────────────────────────
+  {
+    num: "05",
+    year: "2025",
+    title: "HBottomley Ltd",
+    subtitle: "Mechanic & haulage company",
+    description:
+      "A site for a local family-run mechanics and haulage business. Two service strands, one identity — built to be unmistakably Bottomley.",
+    tech: ["React", "Tailwind", "Lovable"],
+    badge: "CLIENT",
+    category: ["client"],
+    image: hbottomleyImg,
+    state: "live",
+    span: "lg",
+    buttons: [
+      { label: "Live site", href: "https://hbottomleyltd.lovable.app/", icon: "live" },
+    ],
+  },
+  {
+    num: "06",
+    year: "2025",
+    title: "Top Frog Records",
+    subtitle: "Independent record label",
+    description:
+      "A black-and-white minimal site for a record label, pointing visitors to Discogs and contact channels.",
+    tech: ["React", "Tailwind", "Lovable"],
+    badge: "CLIENT",
+    category: ["client"],
+    image: topfrogImg,
+    state: "live",
+    span: "md",
+    buttons: [
+      { label: "Live site", href: "https://topfrogrecords.lovable.app/", icon: "live" },
+    ],
+  },
+  {
+    num: "07",
+    year: "2025",
+    title: "The Wearhouse Company",
+    subtitle: "Vintage clothing wholesale",
+    description:
+      "A bold, image-led site for a vintage wholesaler — built to convert resellers and direct buyers to live shopping streams.",
+    tech: ["React", "Tailwind", "Lovable"],
+    badge: "CLIENT",
+    category: ["client"],
+    image: wearhouseImg,
+    state: "live",
+    span: "md",
+    buttons: [
+      { label: "Live site", href: "https://thewearhousecompany.lovable.app/", icon: "live" },
+    ],
+  },
+
+  // ── UNIVERSITY ─────────────────────────────────────────────────────────
+  {
+    num: "08",
+    year: "2025",
+    title: "Backend Development",
+    subtitle: "Server-side & APIs",
+    description:
+      "Coursework on REST APIs, authentication and database design — the underlying plumbing of modern apps.",
+    tech: ["Node.js", "Python", "MongoDB", "Express", "PostgreSQL"],
+    badge: "UNIVERSITY",
+    category: ["university"],
+    image: backendImg,
+    state: "live",
+    span: "md",
+    buttons: [
+      { label: "Code", href: "https://github.com/harrisonspurs", icon: "code" },
+      { label: "Docs", href: "/docs/backend_development.pdf", icon: "docs" },
+    ],
+  },
+  {
+    num: "09",
+    year: "2024",
+    title: "Interaction Design & IoT",
+    subtitle: "Physical computing",
+    description:
+      "Hardware-meets-software prototypes using sensors, microcontrollers and MQTT — projects that live in the real world, not just on a screen.",
+    tech: ["Arduino", "Python", "Sensors", "MQTT"],
+    badge: "UNIVERSITY",
     category: ["university"],
     image: iotImg,
-    stateBadge: "live",
+    state: "live",
+    span: "md",
     buttons: [
-      { label: "View Code", href: "https://github.com/harrisonspurs", icon: "code" },
-      { label: "View Documentation", href: "/docs/iot_documentation.pdf", icon: "docs" },
+      { label: "Code", href: "https://github.com/harrisonspurs", icon: "code" },
+      { label: "Docs", href: "/docs/iot_documentation.pdf", icon: "docs" },
     ],
   },
   {
-    title: "Mathematical Practice Projects",
-    subtitle: "Computational Mathematics",
+    num: "10",
+    year: "2024",
+    title: "Sunset Cityscape — p5.js",
+    subtitle: "Generative pixel art",
     description:
-      "Projects applying mathematical concepts through programming and computational methods. Algorithms, data structures, and mathematical modeling.",
-    tech: ["Python", "JavaScript", "NumPy", "Matplotlib"],
+      "A pixel-art sunset cityscape sketch built in p5.js, exploring layered composition and warm atmospheric colour. Live on OpenProcessing.",
+    tech: ["p5.js", "JavaScript", "Generative"],
     badge: "UNIVERSITY",
-    badgeColor: "bg-purple/20 text-purple",
-    category: ["university"],
-    image: mathPracticeImg,
-    stateBadge: "live",
-    buttons: [
-      { label: "View Code", href: "https://github.com/harrisonspurs", icon: "code" },
-      { label: "View Documentation", href: "/docs/mathematical_practice.pdf", icon: "docs" },
-    ],
-  },
-  {
-    title: "Maths for Computing",
-    subtitle: "Applied Mathematics in CS",
-    description:
-      "Mathematical foundations for computer science including linear algebra, calculus, and discrete mathematics applied to programming problems.",
-    tech: ["Python", "NumPy", "Mathematical Analysis"],
-    badge: "UNIVERSITY",
-    badgeColor: "bg-purple/20 text-purple",
-    category: ["university"],
-    image: mathsComputingImg,
-    stateBadge: "live",
-    buttons: [
-      { label: "View Code", href: "https://github.com/harrisonspurs", icon: "code" },
-      { label: "View Documentation", href: "/docs/maths_for_computing.pdf", icon: "docs" },
-    ],
-  },
-  {
-    title: "Generative Art Portfolio",
-    subtitle: "Algorithmic & Computational Art",
-    description:
-      "Creative coding projects exploring generative algorithms, visual patterns, and artistic programming. Includes parametric design and procedural generation.",
-    tech: ["p5.js", "JavaScript", "Processing", "Three.js", "GLSL"],
-    badge: "UNIVERSITY",
-    badgeColor: "bg-purple/20 text-purple",
-    category: ["university"],
-    stateBadge: "in-development",
-    buttons: [
-      { label: "View Code", href: "https://github.com/harrisonspurs", icon: "code" },
-      { label: "View Documentation", href: "/docs/generative_art.pdf", icon: "docs" },
-    ],
-  },
-  {
-    title: "Creative Coding Foundations",
-    subtitle: "Programming for Creative Expression",
-    description:
-      "Pixel-art sunset cityscape sketch built with p5.js — exploring generative visuals, layered composition and atmospheric colour. Live on OpenProcessing.",
-    tech: ["JavaScript", "p5.js", "HTML/CSS", "Canvas API"],
-    badge: "UNIVERSITY",
-    badgeColor: "bg-purple/20 text-purple",
     category: ["university"],
     image: cityscapeImg,
-    stateBadge: "live",
+    state: "live",
+    span: "lg",
     buttons: [
-      { label: "View Live Demo", href: "https://openprocessing.org/sketch/2590894", icon: "live" },
-      { label: "View Code", href: "https://github.com/harrisonspurs/City_scene", icon: "code" },
-      { label: "View Documentation", href: "/docs/creative_coding.pdf", icon: "docs" },
+      { label: "Live demo", href: "https://openprocessing.org/sketch/2590894", icon: "live" },
+      { label: "Code", href: "https://github.com/harrisonspurs/City_scene", icon: "code" },
+      { label: "Docs", href: "/docs/creative_coding.pdf", icon: "docs" },
     ],
   },
   {
-    title: "Web Technologies Projects",
-    subtitle: "Introduction to Web Development",
+    num: "11",
+    year: "2024",
+    title: "Mathematical Practice",
+    subtitle: "Computational mathematics",
     description:
-      "Early web development projects covering HTML, CSS, JavaScript fundamentals and responsive design principles.",
-    tech: ["HTML/CSS", "JavaScript", "Git", "Responsive Design"],
+      "Projects applying mathematical concepts through code — algorithms, data structures and modelling.",
+    tech: ["Python", "NumPy", "Matplotlib"],
     badge: "UNIVERSITY",
-    badgeColor: "bg-purple/20 text-purple",
     category: ["university"],
-    stateBadge: "in-development",
+    image: mathPracticeImg,
+    state: "live",
+    span: "md",
     buttons: [
-      { label: "View Code", href: "https://github.com/harrisonspurs", icon: "code" },
-      { label: "View Documentation", href: "/docs/web_technologies.pdf", icon: "docs" },
+      { label: "Code", href: "https://github.com/harrisonspurs", icon: "code" },
+      { label: "Docs", href: "/docs/mathematical_practice.pdf", icon: "docs" },
+    ],
+  },
+  {
+    num: "12",
+    year: "2024",
+    title: "Maths for Computing",
+    subtitle: "Linear algebra & calculus",
+    description:
+      "Mathematical foundations for computer science — linear algebra, calculus and discrete maths applied to programming problems.",
+    tech: ["Python", "NumPy"],
+    badge: "UNIVERSITY",
+    category: ["university"],
+    image: mathsComputingImg,
+    state: "live",
+    span: "sm",
+    buttons: [
+      { label: "Code", href: "https://github.com/harrisonspurs", icon: "code" },
+      { label: "Docs", href: "/docs/maths_for_computing.pdf", icon: "docs" },
+    ],
+  },
+  {
+    num: "13",
+    year: "2024",
+    title: "Generative Art Portfolio",
+    subtitle: "Algorithmic visuals",
+    description:
+      "Creative-coding projects exploring generative algorithms, parametric design and procedural pattern.",
+    tech: ["p5.js", "Processing", "Three.js", "GLSL"],
+    badge: "UNIVERSITY",
+    category: ["university", "in-progress"],
+    state: "in-development",
+    span: "sm",
+    buttons: [
+      { label: "Code", href: "https://github.com/harrisonspurs", icon: "code" },
+      { label: "Docs", href: "/docs/generative_art.pdf", icon: "docs" },
+    ],
+  },
+  {
+    num: "14",
+    year: "2023",
+    title: "Web Technologies",
+    subtitle: "Foundations of the web",
+    description:
+      "First-year web projects covering HTML, CSS, JavaScript and responsive design fundamentals.",
+    tech: ["HTML/CSS", "JavaScript", "Git"],
+    badge: "UNIVERSITY",
+    category: ["university"],
+    state: "live",
+    span: "sm",
+    buttons: [
+      { label: "Code", href: "https://github.com/harrisonspurs", icon: "code" },
+      { label: "Docs", href: "/docs/web_technologies.pdf", icon: "docs" },
     ],
   },
 ];
 
 const filters: { label: string; value: ProjectCategory }[] = [
   { label: "All", value: "all" },
-  { label: "Client Work", value: "client" },
-  { label: "University Projects", value: "university" },
+  { label: "Client", value: "client" },
+  { label: "University", value: "university" },
   { label: "In Progress", value: "in-progress" },
 ];
 
-const stateBadgeConfig = {
-  live: { label: "LIVE", className: "bg-green/20 text-green border border-green/30" },
-  "in-development": { label: "IN DEVELOPMENT", className: "bg-yellow-500/20 text-yellow-400 border border-yellow-500/30" },
-  "coming-soon": { label: "COMING SOON", className: "bg-orange/20 text-orange border border-orange/30" },
-};
-
 const ButtonIcon = ({ icon }: { icon: ProjectButton["icon"] }) => {
-  if (icon === "live") return <Globe className="h-3.5 w-3.5" />;
-  if (icon === "code") return <Github className="h-3.5 w-3.5" />;
-  if (icon === "docs") return <FileText className="h-3.5 w-3.5" />;
-  if (icon === "gallery") return <Star className="h-3.5 w-3.5" />;
+  if (icon === "live") return <Globe className="h-3 w-3" />;
+  if (icon === "code") return <Github className="h-3 w-3" />;
+  if (icon === "docs") return <FileText className="h-3 w-3" />;
+  if (icon === "gallery") return <Star className="h-3 w-3" />;
   return null;
 };
 
-const ProjectCard = ({ project, index }: { project: Project; index: number }) => {
-  const primaryBtn = project.buttons[0];
-  const secondaryBtns = project.buttons.slice(1);
+const spanClasses: Record<Span, string> = {
+  xl: "md:col-span-12",                    // full-width hero row
+  lg: "md:col-span-7",                     // 7 of 12
+  md: "md:col-span-6",                     // half
+  sm: "md:col-span-5",                     // 5 of 12
+};
 
-  const renderButton = (btn: ProjectButton, isPrimary: boolean) => {
-    const baseClass = isPrimary
-      ? "flex-1 flex items-center justify-center gap-1.5 text-xs font-semibold py-2 px-3 rounded-lg transition-all duration-200"
-      : "flex-1 flex items-center justify-center gap-1.5 text-xs font-medium py-2 px-3 rounded-lg border transition-all duration-200";
-
-    const enabledPrimary = "bg-gradient-to-r from-blue to-purple text-white hover:shadow-lg hover:shadow-blue/20 hover:-translate-y-0.5";
-    const disabledClass = "opacity-40 cursor-not-allowed bg-secondary/50 border-border text-muted-foreground";
-    const enabledSecondary = "border-border text-muted-foreground hover:text-foreground hover:border-blue/40 hover:bg-blue/5 hover:-translate-y-0.5";
-    const galleryClass = "bg-gradient-to-r from-orange/80 to-pink/80 text-white hover:shadow-lg hover:shadow-orange/20 hover:-translate-y-0.5";
-
-    let className = baseClass;
-    if (btn.disabled) {
-      className += ` ${disabledClass}`;
-    } else if (btn.icon === "gallery") {
-      className += ` ${galleryClass}`;
-    } else if (isPrimary) {
-      className += ` ${enabledPrimary}`;
-    } else {
-      className += ` ${enabledSecondary}`;
-    }
-
+const ProjectCell = ({ project, index }: { project: Project; index: number }) => {
+  const renderBtn = (btn: ProjectButton) => {
+    const cls = "inline-flex items-center gap-1.5 text-xs font-mono uppercase tracking-wider link-quiet";
     if (btn.disabled) {
       return (
-        <button key={btn.label} disabled className={className}>
+        <span key={btn.label} className="inline-flex items-center gap-1.5 text-xs font-mono uppercase tracking-wider text-muted-foreground/50 cursor-not-allowed">
           <ButtonIcon icon={btn.icon} />
           {btn.label}
-        </button>
+        </span>
       );
     }
-
-    // Internal link (gallery)
-    if (btn.href && btn.href.startsWith("/") && !btn.href.startsWith("/docs")) {
+    if (btn.href?.startsWith("/") && !btn.href.startsWith("/docs")) {
       return (
-        <Link key={btn.label} to={btn.href} className={className}>
+        <Link key={btn.label} to={btn.href} className={cls}>
           <ButtonIcon icon={btn.icon} />
           {btn.label}
         </Link>
       );
     }
-
     return (
-      <a key={btn.label} href={btn.href} target="_blank" rel="noopener noreferrer" className={className}>
+      <a key={btn.label} href={btn.href} target="_blank" rel="noopener noreferrer" className={cls}>
         <ButtonIcon icon={btn.icon} />
         {btn.label}
       </a>
     );
   };
 
+  // Featured (xl) gets a horizontal layout
+  const isFeatured = project.span === "xl";
+
   return (
     <motion.article
       layout
-      initial={{ opacity: 0, y: 20 }}
+      initial={{ opacity: 0, y: 24 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.4, delay: index * 0.05 }}
-      className={`project-card group flex flex-col relative ${
-        project.featured
-          ? "ring-1 ring-orange/30 shadow-lg shadow-orange/5"
-          : ""
-      }`}
+      viewport={{ once: true, margin: "-50px" }}
+      transition={{ duration: 0.6, delay: (index % 4) * 0.05 }}
+      className={`col-span-12 ${spanClasses[project.span]} group`}
     >
-      {/* Featured pulse border */}
-      {project.featured && (
-        <div className="absolute inset-0 rounded-xl pointer-events-none">
-          <div className="absolute inset-0 rounded-xl animate-pulse opacity-20 bg-gradient-to-r from-orange/20 to-pink/20" />
-        </div>
-      )}
-
-      {/* Image */}
-      <div className="aspect-video bg-secondary/50 border-b border-border flex items-center justify-center relative overflow-hidden">
+      <div className={isFeatured ? "grid md:grid-cols-12 gap-6 md:gap-10 items-end" : ""}>
+        {/* Image */}
         {project.image ? (
-          <img
-            src={project.image}
-            alt={project.title}
-            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-          />
+          <div className={`overflow-hidden bg-paper-deep border border-foreground/10 ${
+            isFeatured ? "md:col-span-7 aspect-[16/10]" :
+            project.span === "lg" ? "aspect-[16/10]" :
+            project.span === "md" ? "aspect-[4/3]" : "aspect-square"
+          }`}>
+            <img
+              src={project.image}
+              alt={project.title}
+              className="w-full h-full object-cover transition-all duration-700 group-hover:scale-[1.03] grayscale-[20%] group-hover:grayscale-0"
+            />
+          </div>
         ) : (
-          <div className="text-muted-foreground/30 text-xs font-mono">No Preview</div>
-        )}
-
-        {/* Category badge */}
-        <span className={`absolute top-3 left-3 text-[10px] font-bold tracking-wider px-2.5 py-1 rounded-md ${project.badgeColor}`}>
-          {project.badge}
-        </span>
-
-        {/* State badge */}
-        {project.stateBadge && (
-          <span className={`absolute top-3 right-3 text-[9px] font-bold tracking-wider px-2 py-1 rounded-md ${stateBadgeConfig[project.stateBadge].className}`}>
-            {stateBadgeConfig[project.stateBadge].label}
-          </span>
-        )}
-
-        {/* Featured label */}
-        {project.featured && (
-          <div className="absolute bottom-3 right-3 flex items-center gap-1 bg-orange/90 text-white text-[9px] font-bold px-2 py-1 rounded-md">
-            <Star className="h-2.5 w-2.5 fill-white" />
-            FEATURED EVENT
-          </div>
-        )}
-      </div>
-
-      {/* Content */}
-      <div className="p-5 flex flex-col flex-grow">
-        <h3 className="text-base font-semibold text-foreground group-hover:text-blue transition-colors mb-1 leading-snug">
-          {project.title}
-        </h3>
-        <p className="text-xs text-muted-foreground mb-3">{project.subtitle}</p>
-        <p className="text-sm text-muted-foreground mb-4 flex-grow leading-relaxed">{project.description}</p>
-
-        {/* Tech pills */}
-        <div className="flex flex-wrap gap-1.5 mb-4">
-          {project.tech.map((t) => (
-            <span key={t} className="skill-pill text-[10px]">{t}</span>
-          ))}
-        </div>
-
-        {/* Status */}
-        {project.status && (
-          <div className="flex items-center gap-2 text-xs text-orange mb-4">
-            <Clock className="h-3 w-3" />
-            {project.status}
+          <div className={`bg-paper-deep border border-foreground/10 flex items-center justify-center ${
+            project.span === "lg" ? "aspect-[16/10]" : "aspect-[4/3]"
+          }`}>
+            <span className="font-serif serif-italic text-2xl text-muted-foreground">No preview yet</span>
           </div>
         )}
 
-        {/* Buttons */}
-        <div className="mt-auto pt-3 border-t border-border/50 space-y-2">
-          {/* Primary button full width */}
-          <div className="flex">
-            {renderButton(primaryBtn, true)}
+        {/* Text */}
+        <div className={`mt-5 ${isFeatured ? "md:col-span-5 md:mt-0" : ""}`}>
+          {/* Meta row */}
+          <div className="flex items-center justify-between mb-3 text-[10px] font-mono uppercase tracking-[0.2em] text-muted-foreground">
+            <span>№ {project.num} · {project.badge}</span>
+            <span className="flex items-center gap-2">
+              {project.state === "in-development" && (
+                <span className="text-[hsl(var(--ochre))]">In progress</span>
+              )}
+              <span>{project.year}</span>
+            </span>
           </div>
-          {/* Secondary buttons in a row */}
-          {secondaryBtns.length > 0 && (
-            <div className="flex gap-2">
-              {secondaryBtns.map((btn) => renderButton(btn, false))}
-            </div>
-          )}
+
+          {/* Title */}
+          <h3 className={`font-serif font-light leading-tight ${
+            isFeatured ? "text-3xl md:text-5xl" :
+            project.span === "lg" ? "text-2xl md:text-3xl" : "text-xl md:text-2xl"
+          }`}>
+            {project.featured && (
+              <span className="serif-italic text-[hsl(var(--terracotta))]">★ </span>
+            )}
+            {project.title}
+          </h3>
+          <p className="text-sm text-muted-foreground mt-1 italic font-serif">{project.subtitle}</p>
+
+          {/* Description */}
+          <p className={`text-ink-soft leading-relaxed mt-4 ${
+            isFeatured ? "text-base md:text-lg" : "text-sm"
+          }`}>
+            {project.description}
+          </p>
+
+          {/* Tags */}
+          <div className="flex flex-wrap gap-x-4 gap-y-1 mt-5">
+            {project.tech.map((t) => (
+              <span key={t} className="tag">{t}</span>
+            ))}
+          </div>
+
+          {/* Buttons */}
+          <div className="flex flex-wrap gap-x-6 gap-y-3 mt-6 pt-5 border-t border-foreground/10">
+            {project.buttons.map((b) => renderBtn(b))}
+          </div>
         </div>
       </div>
     </motion.article>
@@ -446,61 +439,64 @@ const ProjectCard = ({ project, index }: { project: Project; index: number }) =>
 const Projects = () => {
   const [active, setActive] = useState<ProjectCategory>("all");
 
-  const filtered =
-    active === "all" ? projects : projects.filter((p) => p.category.includes(active));
+  const filtered = active === "all" ? projects : projects.filter((p) => p.category.includes(active));
 
   return (
     <section id="projects" className="section relative">
-      <div className="absolute top-0 right-0 w-1/2 h-1/2 bg-gradient-to-bl from-blue/5 to-transparent pointer-events-none" />
-
-      <div className="container-wide relative z-10">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="max-w-3xl mb-12"
-        >
-          <span className="section-label">Portfolio</span>
-          <h2 className="mb-4">All Projects</h2>
-          <p className="text-lg text-muted-foreground">
-            A collection of client web development work and university creative computing projects
-            from my time at the University of Salford.
-          </p>
-        </motion.div>
+      <div className="container-wide">
+        {/* Header */}
+        <div className="grid grid-cols-12 gap-4 md:gap-8 mb-16 md:mb-20">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="col-span-12 md:col-span-3"
+          >
+            <p className="eyebrow">§ 02 — Selected Work</p>
+          </motion.div>
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.1 }}
+            className="col-span-12 md:col-span-9 font-serif font-light"
+          >
+            Fourteen projects, give or take — <span className="serif-italic">client work, coursework, experiments.</span>
+          </motion.h2>
+        </div>
 
         {/* Filters */}
-        <div className="flex flex-wrap gap-2 mb-10">
+        <div className="flex flex-wrap gap-x-6 gap-y-2 mb-16 pb-6 border-b border-foreground/10">
           {filters.map((f) => (
             <button
               key={f.value}
               onClick={() => setActive(f.value)}
-              className={`px-4 py-2 text-sm rounded-lg font-medium transition-all duration-200 ${
+              className={`text-sm font-mono uppercase tracking-wider transition-colors pb-1 border-b ${
                 active === f.value
-                  ? "bg-gradient-to-r from-blue to-purple text-white"
-                  : "bg-secondary text-muted-foreground hover:text-foreground hover:bg-secondary/80"
+                  ? "text-foreground border-foreground"
+                  : "text-muted-foreground border-transparent hover:text-foreground"
               }`}
             >
               {f.label}
             </button>
           ))}
+          <span className="ml-auto text-xs font-mono uppercase tracking-wider text-muted-foreground self-end pb-1">
+            {filtered.length} {filtered.length === 1 ? "project" : "projects"}
+          </span>
         </div>
 
-        {/* Grid */}
-        <motion.div layout className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filtered.map((project, index) => (
-            <ProjectCard key={project.title} project={project} index={index} />
+        {/* Editorial asymmetric grid */}
+        <motion.div layout className="grid grid-cols-12 gap-x-6 gap-y-20 md:gap-y-28">
+          {filtered.map((p, i) => (
+            <ProjectCell key={p.num} project={p} index={i} />
           ))}
         </motion.div>
 
         {filtered.length === 0 && (
           <div className="text-center py-20">
-            <p className="text-muted-foreground mb-4">No projects found for this category.</p>
-            <button
-              onClick={() => setActive("all")}
-              className="text-blue text-sm hover:underline"
-            >
-              Clear Filters
+            <p className="font-serif text-2xl text-muted-foreground mb-4">Nothing in this category.</p>
+            <button onClick={() => setActive("all")} className="link-accent text-sm">
+              Show all projects
             </button>
           </div>
         )}
