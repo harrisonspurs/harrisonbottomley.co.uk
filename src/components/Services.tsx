@@ -1,94 +1,124 @@
-import { ArrowRight, Check, Globe, Wrench, Smartphone, Server } from "lucide-react";
 import { motion } from "framer-motion";
+import { ArrowUpRight } from "lucide-react";
 
 const Services = () => {
   const scrollToContact = () =>
     document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
 
   const services = [
-    { icon: <Globe className="h-5 w-5" />, title: "Custom Website Design & Development", desc: "Professional websites tailored to your business needs" },
-    { icon: <Server className="h-5 w-5" />, title: "Domain Setup & Hosting", desc: "Full setup so your site is live and accessible" },
-    { icon: <Wrench className="h-5 w-5" />, title: "Ongoing Maintenance & Updates", desc: "Keep your site running smoothly with regular updates" },
-    { icon: <Smartphone className="h-5 w-5" />, title: "Mobile-Responsive Design", desc: "Looks great on every device, from phones to desktops" },
+    {
+      num: "01",
+      title: "Custom website design & build",
+      desc: "I build small business sites from scratch — clean, fast, and tailored to your brief. No bloated templates.",
+    },
+    {
+      num: "02",
+      title: "Domain & hosting setup",
+      desc: "I'll get you live end-to-end: domain, hosting, email forwarding, the lot. You don't have to touch the technical side.",
+    },
+    {
+      num: "03",
+      title: "Maintenance & updates",
+      desc: "Ongoing tweaks, content changes, fixes. A site is never really finished — I keep yours moving.",
+    },
+    {
+      num: "04",
+      title: "Mobile-first design",
+      desc: "Most of your visitors will arrive on a phone. Every site I build is designed for that screen first.",
+    },
   ];
 
-  const clientSites = [
+  const clients = [
     { name: "HBottomley Ltd", type: "Mechanic & Haulage", link: "https://hbottomleyltd.lovable.app/" },
-    { name: "Top Frog Records", type: "Record Label", link: "https://topfrogrecords.lovable.app/" },
-    { name: "The Wearhouse Company", type: "Clothing Sales", link: "https://thewearhousecompany.lovable.app/" },
+    { name: "Top Frog Records", type: "Independent Record Label", link: "https://topfrogrecords.lovable.app/" },
+    { name: "The Wearhouse Company", type: "Vintage Clothing Wholesale", link: "https://thewearhousecompany.lovable.app/" },
   ];
 
   return (
-    <section id="services" className="section relative overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-br from-card via-background to-card" />
-      <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-blue/5 to-transparent pointer-events-none" />
+    <section id="services" className="section relative bg-paper-deep">
+      <div className="container-wide">
+        {/* Header */}
+        <div className="grid grid-cols-12 gap-4 md:gap-8 mb-16 md:mb-24">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="col-span-12 md:col-span-3"
+          >
+            <p className="eyebrow">§ 04 — Services</p>
+          </motion.div>
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.1 }}
+            className="col-span-12 md:col-span-9 font-serif font-light"
+          >
+            Building websites for <span className="serif-italic">small businesses</span> that need to look the part.
+          </motion.h2>
+        </div>
 
-      <div className="container-wide relative z-10">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="max-w-2xl mb-12"
-        >
-          <span className="section-label">Services</span>
-          <h2 className="mb-4">Professional Web Development</h2>
-          <p className="text-lg text-muted-foreground">
-            I create custom websites for small businesses. From simple landing pages to full 
-            business sites with hosting and maintenance.
-          </p>
-        </motion.div>
-
-        {/* Services grid */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-16">
+        {/* Services list — large editorial rows */}
+        <div>
           {services.map((s, i) => (
             <motion.div
-              key={s.title}
+              key={s.num}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: i * 0.1 }}
-              className="glass-card p-5 group hover:border-blue/30 transition-all duration-300"
+              transition={{ delay: i * 0.05 }}
+              className="grid grid-cols-12 gap-4 md:gap-8 py-8 md:py-10 border-t border-foreground/10 last:border-b"
             >
-              <div className="w-10 h-10 rounded-lg bg-blue/10 text-blue flex items-center justify-center mb-3 group-hover:bg-blue group-hover:text-white transition-colors">
-                {s.icon}
-              </div>
-              <h4 className="font-semibold text-sm text-foreground mb-1">{s.title}</h4>
-              <p className="text-xs text-muted-foreground">{s.desc}</p>
+              <p className="col-span-2 md:col-span-1 text-xs font-mono text-muted-foreground pt-2">{s.num}</p>
+              <h3 className="col-span-10 md:col-span-6 font-serif text-2xl md:text-3xl font-light leading-tight">
+                {s.title}
+              </h3>
+              <p className="col-span-12 md:col-span-5 text-base text-ink-soft leading-relaxed pt-1">
+                {s.desc}
+              </p>
             </motion.div>
           ))}
         </div>
 
-        {/* Client examples */}
+        {/* Recent client work */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mb-10"
+          className="mt-24 grid grid-cols-12 gap-4 md:gap-8"
         >
-          <h3 className="text-lg font-semibold mb-6 text-foreground">Recent Client Work</h3>
-          <div className="grid sm:grid-cols-3 gap-4">
-            {clientSites.map((site) => (
-              <a
-                key={site.name}
-                href={site.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="glass-card p-5 group hover:border-blue/30 transition-all duration-300 flex items-center justify-between"
-              >
-                <div>
-                  <p className="font-semibold text-sm text-foreground group-hover:text-blue transition-colors">{site.name}</p>
-                  <p className="text-xs text-muted-foreground">{site.type}</p>
-                </div>
-                <ArrowRight className="h-4 w-4 text-muted-foreground group-hover:text-blue transition-all group-hover:translate-x-1" />
-              </a>
-            ))}
+          <div className="col-span-12 md:col-span-3">
+            <p className="eyebrow">§ Live for</p>
           </div>
+          <ul className="col-span-12 md:col-span-9 divide-y divide-foreground/10 border-y border-foreground/10">
+            {clients.map((c) => (
+              <li key={c.name}>
+                <a
+                  href={c.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group flex items-baseline justify-between py-5 hover:text-[hsl(var(--terracotta))] transition-colors"
+                >
+                  <span className="font-serif text-2xl">{c.name}</span>
+                  <span className="hidden sm:block text-sm text-muted-foreground font-mono group-hover:text-[hsl(var(--terracotta))]">{c.type}</span>
+                  <ArrowUpRight className="h-4 w-4 ml-4 text-muted-foreground group-hover:text-[hsl(var(--terracotta))] group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-all" />
+                </a>
+              </li>
+            ))}
+          </ul>
         </motion.div>
 
-        <button onClick={scrollToContact} className="btn-primary flex items-center gap-2 group">
-          Get in Touch
-          <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
-        </button>
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          className="mt-16"
+        >
+          <button onClick={scrollToContact} className="btn-ink">
+            Start a project
+            <ArrowUpRight className="h-4 w-4" />
+          </button>
+        </motion.div>
       </div>
     </section>
   );

@@ -1,108 +1,93 @@
-import { ArrowDown, Briefcase, Code2, Sparkles } from "lucide-react";
 import { motion } from "framer-motion";
 
 const Hero = () => {
   const scrollTo = (id: string) =>
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
 
-  const stats = [
-    { value: "10+", label: "University Projects", icon: <Code2 className="h-4 w-4" /> },
-    { value: "3", label: "Client Websites", icon: <Briefcase className="h-4 w-4" /> },
-    { value: "Available", label: "For Hire", icon: <Sparkles className="h-4 w-4" /> },
-  ];
-
   return (
-    <section className="min-h-screen flex flex-col justify-center relative overflow-hidden">
-      {/* Gradient orbs */}
-      <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-blue/10 rounded-full blur-[120px] pointer-events-none" />
-      <div className="absolute bottom-1/3 left-1/4 w-80 h-80 bg-pink/8 rounded-full blur-[100px] pointer-events-none" />
-      <div className="absolute top-1/2 left-1/2 w-64 h-64 bg-purple/5 rounded-full blur-[80px] pointer-events-none" />
+    <section className="relative min-h-screen flex flex-col justify-end pt-32 pb-16 overflow-hidden">
+      <div className="container-wide relative">
+        {/* Top meta row */}
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7 }}
+          className="flex justify-between items-end mb-12 md:mb-20 text-[10px] uppercase tracking-[0.25em] font-mono text-muted-foreground"
+        >
+          <p>Vol. 01 — 2026</p>
+          <p className="hidden sm:block">Middlesbrough · Salford · UK</p>
+        </motion.div>
 
-      <div className="container-wide relative z-10 py-20">
-        <div className="max-w-4xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="flex items-center gap-3 mb-6"
-          >
-            <div className="h-px w-12 bg-gradient-to-r from-blue to-pink" />
-            <span className="text-sm font-medium tracking-wide text-muted-foreground">
-              Creative Computing Student · University of Salford
-            </span>
-          </motion.div>
-
+        {/* Editorial headline — asymmetric, broken across lines */}
+        <div className="grid grid-cols-12 gap-4 md:gap-8 items-end">
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.1 }}
-            className="mb-6"
+            transition={{ duration: 0.9, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+            className="col-span-12 md:col-span-10 font-serif font-light"
           >
-            <span className="gradient-text">Harrison Bottomley</span>
+            <span className="block">A second-year</span>
+            <span className="block pl-[8%] md:pl-[18%]">
+              <span className="serif-italic text-[hsl(var(--terracotta))]">creative</span> coder,
+            </span>
+            <span className="block">building things</span>
+            <span className="block pl-[12%] md:pl-[28%]">
+              that <span className="serif-italic">work</span>.
+            </span>
           </motion.h1>
+        </div>
 
-          <motion.p
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.2 }}
-            className="text-xl md:text-2xl text-muted-foreground max-w-3xl mb-4 leading-relaxed font-light"
-          >
-            Second-year student exploring AI, full-stack development, and XR design. 
-            Also available for professional web development projects.
-          </motion.p>
-
+        {/* Sub-paragraph + meta */}
+        <div className="grid grid-cols-12 gap-4 md:gap-8 mt-16 md:mt-24">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.4 }}
-            className="flex flex-col sm:flex-row gap-4 mt-10"
+            transition={{ duration: 0.8, delay: 0.5 }}
+            className="col-span-12 md:col-span-5 md:col-start-2"
           >
-            <button onClick={() => scrollTo("projects")} className="btn-primary flex items-center justify-center gap-2 group">
-              View Projects
-              <ArrowDown className="h-4 w-4 transition-transform group-hover:translate-y-1" />
-            </button>
-            <button onClick={() => scrollTo("services")} className="btn-secondary flex items-center justify-center gap-2">
-              Web Development Services
-            </button>
+            <p className="eyebrow mb-4">§ Introduction</p>
+            <p className="text-base md:text-lg text-ink-soft leading-relaxed">
+              I'm Harrison. I study Creative Computing at the University of Salford —
+              splitting my time between AI experiments, full-stack apps, XR sketches and
+              the occasional Unreal Engine project. On weekends I build websites for small
+              businesses around the North West.
+            </p>
           </motion.div>
 
-          {/* Stats */}
           <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
-            className="mt-16 pt-8 border-t border-border"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.7 }}
+            className="col-span-12 md:col-span-4 md:col-start-9 md:text-right space-y-6"
           >
-            <div className="grid grid-cols-3 gap-6 max-w-lg">
-              {stats.map((stat, i) => (
-                <div key={i} className="text-center sm:text-left">
-                  <div className="flex items-center gap-2 justify-center sm:justify-start mb-1">
-                    <span className="text-blue">{stat.icon}</span>
-                    <p className="text-2xl font-bold text-foreground">{stat.value}</p>
-                  </div>
-                  <p className="text-xs text-muted-foreground">{stat.label}</p>
-                </div>
-              ))}
+            <div>
+              <p className="eyebrow justify-end">§ Currently</p>
+              <p className="font-serif text-xl mt-2 leading-snug">
+                Open to <span className="serif-italic">freelance</span> & collaborative work.
+              </p>
+            </div>
+            <div className="flex md:justify-end gap-3 pt-2">
+              <button onClick={() => scrollTo("projects")} className="btn-ink">
+                See the work
+              </button>
+              <button onClick={() => scrollTo("contact")} className="btn-outline">
+                Say hello
+              </button>
             </div>
           </motion.div>
         </div>
-      </div>
 
-      {/* Scroll indicator */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2"
-      >
+        {/* Bottom hairline + scroll cue */}
         <motion.div
-          animate={{ y: [0, 8, 0] }}
-          transition={{ duration: 2, repeat: Infinity }}
-          className="w-6 h-10 rounded-full border-2 border-muted-foreground/30 flex justify-center pt-2"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1 }}
+          className="mt-24 pt-6 border-t border-foreground/10 flex justify-between items-center text-[10px] uppercase tracking-[0.25em] font-mono text-muted-foreground"
         >
-          <div className="w-1 h-2 bg-muted-foreground/50 rounded-full" />
+          <span>Scroll</span>
+          <span>10+ Projects · 3 Live Clients</span>
         </motion.div>
-      </motion.div>
+      </div>
     </section>
   );
 };

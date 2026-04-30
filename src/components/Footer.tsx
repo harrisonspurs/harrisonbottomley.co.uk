@@ -1,94 +1,45 @@
-import { Github, Instagram, Mail } from "lucide-react";
-
 const Footer = () => {
-  const currentYear = new Date().getFullYear();
+  const year = new Date().getFullYear();
 
   const scrollTo = (id: string) => {
-    if (id === "top") {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-      return;
-    }
+    if (id === "top") return window.scrollTo({ top: 0, behavior: "smooth" });
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
   };
 
-  const links = [
-    { label: "Home", id: "top" },
-    { label: "Projects", id: "projects" },
-    { label: "Skills", id: "skills" },
-    { label: "About", id: "about" },
-    { label: "Contact", id: "contact" },
-  ];
-
-  const socials = [
-    { icon: <Github className="h-5 w-5" />, href: "https://github.com/harrisonspurs", label: "GitHub" },
-    { icon: <Instagram className="h-5 w-5" />, href: "https://instagram.com/harrison4_11", label: "Instagram" },
-    { icon: <Mail className="h-5 w-5" />, href: "mailto:harrison11bottomley@gmail.com", label: "Email" },
-  ];
-
   return (
-    <footer className="border-t border-border bg-[hsl(0_0%_6%)]">
-      <div className="container-wide py-16">
-        <div className="grid md:grid-cols-3 gap-10">
-          {/* Brand */}
-          <div>
-            <div className="flex items-center gap-3 mb-3">
-              <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-blue to-pink flex items-center justify-center font-bold text-xs text-white">
-                HB
-              </div>
-              <span className="font-semibold text-foreground">Harrison Bottomley</span>
-            </div>
-            <p className="text-sm text-muted-foreground">
-              Creative Computing Student & Web Developer
+    <footer className="border-t border-foreground/10 bg-paper-deep">
+      <div className="container-wide py-16 md:py-24">
+        {/* Big colophon */}
+        <div className="grid grid-cols-12 gap-4 md:gap-8 mb-16">
+          <div className="col-span-12 md:col-span-8">
+            <p className="eyebrow mb-4">§ Colophon</p>
+            <p className="font-serif text-3xl md:text-5xl font-light leading-tight">
+              Set in <span className="serif-italic">Fraunces</span> &amp; Inter. Built in
+              React with care, by hand, in <span className="serif-italic">Salford</span>.
             </p>
           </div>
-
-          {/* Quick links */}
-          <div>
-            <h4 className="text-sm font-semibold text-foreground mb-4">Quick Links</h4>
-            <ul className="space-y-2">
-              {links.map((l) => (
-                <li key={l.id}>
-                  <button
-                    onClick={() => scrollTo(l.id)}
-                    className="text-sm text-muted-foreground hover:text-foreground transition-colors"
-                  >
-                    {l.label}
-                  </button>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Social */}
-          <div>
-            <h4 className="text-sm font-semibold text-foreground mb-4">Connect</h4>
-            <div className="flex gap-3">
-              {socials.map((s) => (
-                <a
-                  key={s.label}
-                  href={s.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-10 h-10 rounded-lg bg-secondary flex items-center justify-center text-muted-foreground hover:text-blue hover:bg-blue/10 transition-all"
-                  aria-label={s.label}
-                >
-                  {s.icon}
-                </a>
-              ))}
-            </div>
+          <div className="col-span-12 md:col-span-4 md:text-right text-sm text-ink-soft space-y-2">
+            <p>Harrison Bottomley</p>
+            <p>Middlesbrough / Salford, UK</p>
+            <p className="font-mono text-xs uppercase tracking-wider text-muted-foreground pt-2">
+              MMXXVI · Vol. 01
+            </p>
           </div>
         </div>
-      </div>
 
-      {/* Bottom bar */}
-      <div className="border-t border-border">
-        <div className="container-wide py-6 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-xs text-muted-foreground">
-            © {currentYear} Harrison Bottomley. All rights reserved.
-          </p>
-          <p className="text-xs text-muted-foreground">
-            Middlesbrough / Salford, UK · Built with React & passion for code
-          </p>
+        {/* Bottom bar */}
+        <div className="border-t border-foreground/10 pt-6 grid grid-cols-12 gap-4 text-xs font-mono uppercase tracking-wider text-muted-foreground">
+          <p className="col-span-12 md:col-span-4">© {year} Harrison Bottomley</p>
+          <nav className="col-span-12 md:col-span-4 flex gap-5 md:justify-center">
+            <button onClick={() => scrollTo("top")} className="hover:text-foreground transition-colors">Top</button>
+            <button onClick={() => scrollTo("projects")} className="hover:text-foreground transition-colors">Work</button>
+            <button onClick={() => scrollTo("contact")} className="hover:text-foreground transition-colors">Contact</button>
+          </nav>
+          <div className="col-span-12 md:col-span-4 flex gap-5 md:justify-end">
+            <a href="https://github.com/harrisonspurs" target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors">GitHub</a>
+            <a href="https://instagram.com/harrison4_11" target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors">Instagram</a>
+            <a href="mailto:harrison11bottomley@gmail.com" className="hover:text-foreground transition-colors">Email</a>
+          </div>
         </div>
       </div>
     </footer>

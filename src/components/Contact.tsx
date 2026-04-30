@@ -1,111 +1,96 @@
-import { Mail, Phone, Github, Instagram, ArrowUpRight } from "lucide-react";
 import { motion } from "framer-motion";
+import { ArrowUpRight } from "lucide-react";
 
 const Contact = () => {
-  const cards = [
-    {
-      icon: <Mail className="h-6 w-6" />,
-      title: "Email Me",
-      value: "harrison11bottomley@gmail.com",
-      desc: "Best for project inquiries and detailed questions",
-      href: "mailto:harrison11bottomley@gmail.com",
-      action: "Send Email",
-    },
-    {
-      icon: <Phone className="h-6 w-6" />,
-      title: "Call or Text",
-      value: "07877 760 374",
-      desc: "Available weekdays 9am–6pm",
-      href: "tel:07877760374",
-      action: "Call Now",
-    },
-    {
-      icon: <Github className="h-6 w-6" />,
-      title: "Connect Online",
-      value: "GitHub & Instagram",
-      desc: "Follow my work and projects",
-      href: "https://github.com/harrisonspurs",
-      action: "View Profiles",
-      socials: [
-        { icon: <Github className="h-5 w-5" />, href: "https://github.com/harrisonspurs", label: "GitHub" },
-        { icon: <Instagram className="h-5 w-5" />, href: "https://instagram.com/harrison4_11", label: "Instagram" },
-      ],
-    },
+  const channels = [
+    { num: "01", label: "Email", value: "harrison11bottomley@gmail.com", href: "mailto:harrison11bottomley@gmail.com" },
+    { num: "02", label: "Phone", value: "07877 760 374", href: "tel:07877760374" },
+    { num: "03", label: "GitHub", value: "@harrisonspurs", href: "https://github.com/harrisonspurs" },
+    { num: "04", label: "Instagram", value: "@harrison4_11", href: "https://instagram.com/harrison4_11" },
   ];
 
   return (
-    <section id="contact" className="section relative overflow-hidden">
-      <div className="absolute bottom-0 right-0 w-1/3 h-1/3 bg-gradient-to-tl from-pink/5 to-transparent pointer-events-none" />
+    <section id="contact" className="section relative">
+      <div className="container-wide">
+        {/* Headline */}
+        <div className="grid grid-cols-12 gap-4 md:gap-8 mb-20">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="col-span-12 md:col-span-3"
+          >
+            <p className="eyebrow">§ 05 — Contact</p>
+          </motion.div>
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.1 }}
+            className="col-span-12 md:col-span-9 font-serif font-light"
+          >
+            Got an idea, a project, or just want to <span className="serif-italic">say hello</span>?
+          </motion.h2>
+        </div>
 
-      <div className="container-wide relative z-10">
-        <motion.div
+        {/* Big email link */}
+        <motion.a
+          href="mailto:harrison11bottomley@gmail.com"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center max-w-2xl mx-auto mb-16"
+          className="group block py-12 md:py-16 border-y border-foreground/10 hover:bg-paper-deep transition-colors"
         >
-          <span className="section-label">Contact</span>
-          <h2 className="mb-4">Get In Touch</h2>
-          <p className="text-lg text-muted-foreground">
-            Interested in working together or have questions about my work? 
-            I'd love to hear from you.
-          </p>
-        </motion.div>
-
-        <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto mb-12">
-          {cards.map((card, i) => (
-            <motion.div
-              key={card.title}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.1 }}
-              className="glass-card p-6 text-center group hover:border-blue/30 transition-all duration-300"
-            >
-              <div className="w-14 h-14 rounded-xl bg-blue/10 text-blue flex items-center justify-center mx-auto mb-4 group-hover:bg-blue group-hover:text-white transition-colors">
-                {card.icon}
-              </div>
-              <h3 className="text-lg font-semibold mb-1 text-foreground">{card.title}</h3>
-              <p className="text-sm text-muted-foreground mb-3">{card.desc}</p>
-
-              {card.socials ? (
-                <div className="flex justify-center gap-3">
-                  {card.socials.map((s) => (
-                    <a
-                      key={s.label}
-                      href={s.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center gap-2 px-4 py-2 rounded-lg bg-secondary text-muted-foreground hover:text-blue hover:bg-blue/10 transition-all text-sm"
-                    >
-                      {s.icon}
-                      {s.label}
-                    </a>
-                  ))}
-                </div>
-              ) : (
-                <a
-                  href={card.href}
-                  className="inline-flex items-center gap-2 text-sm font-medium text-blue hover:text-blue/80 transition-colors"
-                >
-                  {card.action}
-                  <ArrowUpRight className="h-3.5 w-3.5" />
-                </a>
-              )}
-            </motion.div>
-          ))}
-        </div>
-
-        {/* Extra info */}
-        <div className="text-center space-y-3">
-          <p className="text-sm text-muted-foreground">
-            Response time: Typically within 24 hours
-          </p>
-          <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-green/10 border border-green/20">
-            <span className="w-2 h-2 bg-green rounded-full animate-pulse" />
-            <span className="text-sm font-medium text-green">Currently accepting new web development projects</span>
+          <div className="container-wide flex items-center justify-between gap-4">
+            <p className="font-serif text-3xl md:text-5xl lg:text-6xl font-light tracking-tight break-all">
+              harrison11bottomley<span className="serif-italic text-[hsl(var(--terracotta))]">@</span>gmail.com
+            </p>
+            <ArrowUpRight className="h-8 w-8 md:h-12 md:w-12 flex-shrink-0 text-muted-foreground group-hover:text-[hsl(var(--terracotta))] group-hover:-translate-y-1 group-hover:translate-x-1 transition-all" />
           </div>
+        </motion.a>
+
+        {/* Channels list */}
+        <div className="grid grid-cols-12 gap-4 md:gap-8 mt-20">
+          <div className="col-span-12 md:col-span-3">
+            <p className="eyebrow">§ Channels</p>
+            <p className="text-sm text-ink-soft mt-4 leading-relaxed">
+              I usually reply within a day. Email's best for projects;
+              text or call for anything urgent.
+            </p>
+          </div>
+
+          <ul className="col-span-12 md:col-span-9 divide-y divide-foreground/10 border-y border-foreground/10">
+            {channels.map((c) => (
+              <li key={c.label}>
+                <a
+                  href={c.href}
+                  target={c.href.startsWith("http") ? "_blank" : undefined}
+                  rel="noopener noreferrer"
+                  className="group grid grid-cols-12 items-baseline py-5 hover:text-[hsl(var(--terracotta))] transition-colors"
+                >
+                  <span className="col-span-1 text-xs font-mono text-muted-foreground">{c.num}</span>
+                  <span className="col-span-3 text-xs font-mono uppercase tracking-wider text-muted-foreground group-hover:text-[hsl(var(--terracotta))]">
+                    {c.label}
+                  </span>
+                  <span className="col-span-7 font-serif text-xl md:text-2xl">{c.value}</span>
+                  <ArrowUpRight className="col-span-1 h-4 w-4 ml-auto text-muted-foreground group-hover:text-[hsl(var(--terracotta))] group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-all" />
+                </a>
+              </li>
+            ))}
+          </ul>
         </div>
+
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          className="mt-16 inline-flex items-center gap-3"
+        >
+          <span className="w-1.5 h-1.5 bg-[hsl(var(--moss))] rounded-full animate-pulse" />
+          <span className="text-xs font-mono uppercase tracking-[0.2em] text-[hsl(var(--moss))]">
+            Currently accepting new projects
+          </span>
+        </motion.div>
       </div>
     </section>
   );

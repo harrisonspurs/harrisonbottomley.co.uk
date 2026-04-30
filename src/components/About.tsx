@@ -1,121 +1,115 @@
 import { motion } from "framer-motion";
-import { MapPin, GraduationCap, Calendar, CheckCircle2 } from "lucide-react";
 
 const About = () => {
   const focuses = [
-    "Artificial Intelligence & Machine Learning",
-    "Full-Stack Web Development",
-    "XR Design & Immersive Technologies",
+    "AI & Machine Learning",
+    "Full-Stack Web",
+    "XR & Spatial Design",
     "Freelance Web Development",
-    "Creative Coding & Generative Art",
+    "Creative Coding",
+    "Hardware / IoT",
   ];
 
   return (
-    <section id="about" className="section relative overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-br from-blue/3 via-transparent to-pink/3 pointer-events-none" />
+    <section id="about" className="section relative">
+      <div className="container-wide">
+        {/* Section header */}
+        <div className="grid grid-cols-12 gap-4 md:gap-8 mb-16 md:mb-24">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="col-span-12 md:col-span-3"
+          >
+            <p className="eyebrow">§ 03 — About</p>
+          </motion.div>
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.1 }}
+            className="col-span-12 md:col-span-9 font-serif font-light"
+          >
+            A few words on <span className="serif-italic">who I am</span>, and what I'm trying to do.
+          </motion.h2>
+        </div>
 
-      <div className="container-wide relative z-10">
+        {/* Long-form */}
+        <div className="grid grid-cols-12 gap-4 md:gap-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="col-span-12 md:col-span-7 md:col-start-3 space-y-6 text-lg leading-relaxed text-ink-soft"
+          >
+            <p>
+              <span className="float-left font-serif text-7xl leading-[0.8] mr-3 mt-1 text-[hsl(var(--terracotta))]">I</span>
+              grew up in Middlesbrough and moved to Salford to study Creative Computing — a
+              degree that, in practice, lets me jump between writing backend APIs one week
+              and building XR scenes the next. I like that. The variety is the point.
+            </p>
+            <p>
+              Most of my coursework lives at the messy intersection of code and design:
+              generative art, machine-learning experiments, IoT prototypes, and the
+              occasional Unreal Engine game shown to a public audience at MediaCityUK.
+              I'd rather ship something honest and rough than nothing at all.
+            </p>
+            <p>
+              Outside of university I run a small freelance practice building websites for
+              local businesses — a record label, a haulage company, a vintage clothing
+              wholesaler. It keeps me grounded in real briefs, real budgets, and real users.
+            </p>
+          </motion.div>
+        </div>
+
+        {/* Side-by-side meta */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mb-12"
+          className="mt-20 md:mt-28 pt-10 border-t border-foreground/10 grid grid-cols-12 gap-4 md:gap-8"
         >
-          <span className="section-label">Background</span>
-          <h2>About Me</h2>
+          <div className="col-span-6 md:col-span-3">
+            <p className="eyebrow mb-3">§ Based</p>
+            <p className="font-serif text-xl">Middlesbrough <span className="serif-italic text-muted-foreground">/</span> Salford</p>
+          </div>
+          <div className="col-span-6 md:col-span-3">
+            <p className="eyebrow mb-3">§ Studying</p>
+            <p className="font-serif text-xl">BSc Creative Computing</p>
+            <p className="text-xs text-muted-foreground font-mono mt-1">Salford · 2023 — 2026</p>
+          </div>
+          <div className="col-span-6 md:col-span-3">
+            <p className="eyebrow mb-3">§ Status</p>
+            <p className="font-serif text-xl text-[hsl(var(--moss))]">
+              Available
+            </p>
+            <p className="text-xs text-muted-foreground font-mono mt-1">For freelance & collab</p>
+          </div>
+          <div className="col-span-6 md:col-span-3">
+            <p className="eyebrow mb-3">§ Year</p>
+            <p className="font-serif text-xl">Second year</p>
+          </div>
         </motion.div>
 
-        <div className="grid lg:grid-cols-5 gap-12">
-          {/* Left - Photo & info */}
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="lg:col-span-2 space-y-6"
-          >
-            {/* Photo placeholder */}
-            <div className="aspect-square max-w-sm rounded-2xl bg-card border border-border flex items-center justify-center overflow-hidden relative">
-              <div className="absolute inset-0 bg-gradient-to-br from-blue/10 via-purple/5 to-pink/10" />
-              <div className="relative z-10 flex flex-col items-center justify-center w-full h-full">
-                <div className="w-40 h-40 rounded-full bg-gradient-to-br from-blue via-purple to-pink flex items-center justify-center shadow-2xl shadow-blue/20 ring-4 ring-blue/20">
-                  <span className="text-white font-bold text-5xl tracking-tight select-none">HB</span>
-                </div>
-              </div>
-            </div>
-
-            {/* Quick info */}
-            <div className="glass-card p-5 space-y-4">
-              {[
-                { icon: <MapPin className="h-4 w-4" />, label: "Location", value: "Middlesbrough / Salford, UK" },
-                { icon: <CheckCircle2 className="h-4 w-4" />, label: "Status", value: "Available for Projects" },
-                { icon: <Calendar className="h-4 w-4" />, label: "Year", value: "2nd Year Student" },
-              ].map((item, i) => (
-                <div key={i} className="flex items-center gap-3">
-                  <span className="text-blue">{item.icon}</span>
-                  <div>
-                    <p className="text-xs text-muted-foreground">{item.label}</p>
-                    <p className="text-sm font-medium text-foreground">{item.value}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </motion.div>
-
-          {/* Right - Bio */}
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="lg:col-span-3 space-y-6"
-          >
-            <div className="space-y-5 text-muted-foreground">
-              <p className="text-foreground text-lg leading-relaxed">
-                I'm a second-year Creative Computing student at the University of Salford 
-                with a passion for web development and creative technology.
-              </p>
-              <p>
-                Currently studying Artificial Intelligence, Full-Stack Development, and XR Design, 
-                I combine technical skills with creative thinking to build digital solutions. My coursework 
-                spans backend development, generative art, interaction design, IoT, and mathematical 
-                computing, giving me a diverse technical foundation across multiple disciplines.
-              </p>
-              <p>
-                Alongside my studies, I work as a freelance web developer, creating professional websites 
-                for small businesses in the Manchester and Salford area. I specialise in custom website 
-                design, hosting setup, and ongoing maintenance, helping local businesses establish their 
-                online presence.
-              </p>
-            </div>
-
-            {/* Education */}
-            <div className="glass-card p-5 flex items-center gap-4">
-              <div className="w-12 h-12 rounded-xl bg-purple/10 text-purple flex items-center justify-center flex-shrink-0">
-                <GraduationCap className="h-5 w-5" />
-              </div>
-              <div>
-                <p className="font-semibold text-foreground">University of Salford</p>
-                <p className="text-sm text-muted-foreground">BSc Creative Computing · 2023 – Present · Expected 2026</p>
-              </div>
-            </div>
-
-            {/* Current focus */}
-            <div>
-              <h3 className="text-lg font-semibold mb-4 text-foreground">Current Focus</h3>
-              <div className="flex flex-wrap gap-2">
-                {focuses.map((f) => (
-                  <span key={f} className="skill-pill">{f}</span>
-                ))}
-              </div>
-            </div>
-
-            <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-green/10 border border-green/20">
-              <span className="w-2 h-2 bg-green rounded-full animate-pulse" />
-              <span className="text-sm font-medium text-green">Available for new projects</span>
-            </div>
-          </motion.div>
-        </div>
+        {/* Focus list */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="mt-20 grid grid-cols-12 gap-4 md:gap-8"
+        >
+          <div className="col-span-12 md:col-span-3">
+            <p className="eyebrow">§ Working in</p>
+          </div>
+          <ul className="col-span-12 md:col-span-9 grid sm:grid-cols-2 gap-x-8 gap-y-1 font-serif text-2xl md:text-3xl">
+            {focuses.map((f, i) => (
+              <li key={f} className="border-b border-foreground/10 py-3 flex justify-between items-baseline">
+                <span>{f}</span>
+                <span className="text-[10px] font-mono text-muted-foreground">{String(i + 1).padStart(2, "0")}</span>
+              </li>
+            ))}
+          </ul>
+        </motion.div>
       </div>
     </section>
   );
