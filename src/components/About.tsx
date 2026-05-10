@@ -1,62 +1,75 @@
+import { motion } from "framer-motion";
+
 const About = () => {
   const focusAreas = [
-    "Full-stack web development",
-    "Interactive and XR prototyping",
-    "Creative coding and generative visuals",
-    "AI and machine learning experiments",
+    "Web & full-stack",
+    "Interactive & XR",
+    "Generative / creative coding",
+    "AI & computer vision",
+    "Physical computing & IoT",
+    "Game development",
   ];
 
   return (
     <section id="about" className="section border-t border-foreground/10">
       <div className="container-wide">
-        <p className="text-xs font-mono uppercase tracking-[0.2em] text-muted-foreground">About</p>
-        <h2 className="mt-4 max-w-3xl font-serif font-light">
-          I build practical digital experiences with a strong design focus.
-        </h2>
-
-        <div className="mt-8 grid gap-8 lg:grid-cols-2">
-          <div className="space-y-4 text-foreground/85">
-            <p>
-              I'm a Creative Computing student at the University of Salford, based in Halifax.
-              My work moves between web development, interaction design, XR and backend systems.
+        <div className="grid grid-cols-12 gap-4 md:gap-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="col-span-12 md:col-span-3"
+          >
+            <p className="text-xs font-mono uppercase tracking-[0.25em] text-muted-foreground">
+              § About
             </p>
-            <p>
-              Alongside university projects, I run freelance web projects for local businesses.
-              That balance keeps my work grounded in real users and real outcomes.
-            </p>
-          </div>
+          </motion.div>
 
-          <div className="border border-foreground/10 bg-card p-5">
-            <p className="text-xs font-mono uppercase tracking-[0.2em] text-muted-foreground">
-              Focus areas
-            </p>
-            <ul className="mt-4 space-y-2">
-              {focusAreas.map((area) => (
-                <li key={area} className="text-sm text-foreground/85">
-                  {area}
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.1 }}
+            className="col-span-12 md:col-span-9"
+          >
+            <h2 className="font-serif font-light leading-tight">
+              I'm a Creative Computing student at the{" "}
+              <span className="serif-italic">University of Salford</span>,
+              working across the line where code meets design.
+            </h2>
 
-        <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          <div className="border border-foreground/10 bg-card p-4">
-            <p className="text-xs font-mono uppercase tracking-[0.2em] text-muted-foreground">Based</p>
-            <p className="mt-2 font-serif text-xl">Halifax, UK</p>
-          </div>
-          <div className="border border-foreground/10 bg-card p-4">
-            <p className="text-xs font-mono uppercase tracking-[0.2em] text-muted-foreground">Studying</p>
-            <p className="mt-2 font-serif text-xl">BSc Creative Computing</p>
-          </div>
-          <div className="border border-foreground/10 bg-card p-4">
-            <p className="text-xs font-mono uppercase tracking-[0.2em] text-muted-foreground">Status</p>
-            <p className="mt-2 font-serif text-xl">Open to freelance</p>
-          </div>
-          <div className="border border-foreground/10 bg-card p-4">
-            <p className="text-xs font-mono uppercase tracking-[0.2em] text-muted-foreground">Stage</p>
-            <p className="mt-2 font-serif text-xl">Second year</p>
-          </div>
+            <div className="mt-10 grid gap-10 lg:grid-cols-2">
+              <div className="space-y-5 text-foreground/85 leading-relaxed">
+                <p>
+                  My work moves between web, XR, generative visuals, AI and
+                  hardware — wherever an idea pulls me. This site is the archive.
+                </p>
+                <p>
+                  I care about craft. Things that load fast, read well, and feel
+                  like a person made them. Less polish-for-polish-sake, more
+                  intent.
+                </p>
+              </div>
+
+              <ul className="grid grid-cols-2 gap-px bg-foreground/10 border border-foreground/10">
+                {focusAreas.map((area, i) => (
+                  <motion.li
+                    key={area}
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: i * 0.05 }}
+                    className="bg-background p-4 text-sm text-foreground/90"
+                  >
+                    <span className="font-mono text-[10px] text-muted-foreground mr-2">
+                      0{i + 1}
+                    </span>
+                    {area}
+                  </motion.li>
+                ))}
+              </ul>
+            </div>
+          </motion.div>
         </div>
       </div>
     </section>
