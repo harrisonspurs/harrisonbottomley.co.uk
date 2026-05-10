@@ -396,33 +396,46 @@ const Projects = () => {
   return (
     <section id="projects" className="section">
       <div className="container-wide">
-        <p className="text-xs font-mono uppercase tracking-[0.2em] text-muted-foreground">Projects</p>
-        <h2 className="mt-4 max-w-3xl font-serif font-light">
-          Selected work across client projects, coursework and experiments.
-        </h2>
+        <div className="grid grid-cols-12 gap-4 md:gap-8 items-end">
+          <p className="col-span-12 md:col-span-3 text-xs font-mono uppercase tracking-[0.25em] text-muted-foreground">
+            § Selected Work
+          </p>
+          <h2 className="col-span-12 md:col-span-9 font-serif font-light leading-[1.05]">
+            The <span className="serif-italic">archive</span> — clients, coursework and experiments.
+          </h2>
+        </div>
 
-        <div className="mt-8 flex flex-wrap items-center gap-2 border-b border-foreground/10 pb-5">
+        <div className="mt-12 flex flex-wrap items-center gap-2 border-b border-foreground/10 pb-5">
           {filters.map((f) => (
             <button
               key={f.value}
               onClick={() => setActive(f.value)}
-              className={`rounded-full border px-3 py-1.5 text-xs font-mono uppercase tracking-wide transition-colors ${
+              className={`rounded-full border px-3 py-1.5 text-xs font-mono uppercase tracking-wide transition-all duration-300 ${
                 active === f.value
                   ? "border-foreground/30 bg-foreground text-background"
-                  : "border-foreground/15 text-muted-foreground hover:text-foreground"
+                  : "border-foreground/15 text-muted-foreground hover:text-foreground hover:border-foreground/40"
               }`}
             >
               {f.label}
             </button>
           ))}
           <span className="ml-auto text-xs font-mono uppercase tracking-wide text-muted-foreground">
-            {filtered.length} {filtered.length === 1 ? "project" : "projects"}
+            {filtered.length.toString().padStart(2, "0")} / {projects.length.toString().padStart(2, "0")}
           </span>
         </div>
 
-        <div className="mt-8 grid grid-cols-1 gap-8 md:grid-cols-2">
-          {filtered.map((project) => (
-            <ProjectCard key={project.num} project={project} />
+        <div className="mt-10 grid grid-cols-1 gap-8 md:grid-cols-2">
+          {filtered.map((project, i) => (
+            <motion.div
+              key={project.num}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-80px" }}
+              transition={{ duration: 0.6, delay: (i % 4) * 0.08 }}
+              className={project.featured ? "md:col-span-2" : ""}
+            >
+              <ProjectCard project={project} />
+            </motion.div>
           ))}
         </div>
 
