@@ -14,11 +14,11 @@ import creativeCollabImg from "@/assets/creative_collab.png";
 
 const galleryImages = [
   { src: lightwavesEvent, alt: "Orbit Fall on the large public screen at MediaCityUK" },
-  { src: lightwavesEvent1, alt: "Orbit Fall poster — astronaut floating in space" },
+  { src: lightwavesEvent1, alt: "Orbit Fall poster - astronaut floating in space" },
   { src: lightwavesEvent2, alt: "Live gameplay footage at the Light Waves event" },
-  { src: lightwavesEvent3, alt: "Character design — astronaut models in Unreal Engine" },
-  { src: lightwavesEvent4, alt: "Promotional art — astronaut and rocket in an asteroid field" },
-  { src: creativeCollabImg, alt: "In-game environment — planets and asteroids" },
+  { src: lightwavesEvent3, alt: "Character design - astronaut models in Unreal Engine" },
+  { src: lightwavesEvent4, alt: "Promotional art - astronaut and rocket in an asteroid field" },
+  { src: creativeCollabImg, alt: "In-game environment - planets and asteroids" },
 ];
 
 const Lightbox = ({
@@ -131,7 +131,7 @@ const MediaCityLightWaves = () => {
                 transition={{ delay: 0.1 }}
                 className="col-span-12 md:col-span-3 eyebrow"
               >
-                § 01 — Featured
+                Featured project
               </motion.p>
 
               <div className="col-span-12 md:col-span-9">
@@ -141,7 +141,7 @@ const MediaCityLightWaves = () => {
                   transition={{ duration: 0.8 }}
                   className="font-serif font-light"
                 >
-                  Orbit Fall <span className="serif-italic text-[hsl(var(--terracotta))]">at</span> Light Waves.
+                  Orbit Fall at Light Waves
                 </motion.h1>
                 <motion.p
                   initial={{ opacity: 0, y: 20 }}
@@ -167,7 +167,7 @@ const MediaCityLightWaves = () => {
             <img src={lightwavesEvent} alt="Orbit Fall at Media City Light Waves" className="w-full h-full object-cover" />
           </div>
           <div className="grid grid-cols-12 gap-4 mt-4 text-xs font-mono uppercase tracking-[0.2em] text-muted-foreground">
-            <p className="col-span-12 md:col-span-6">Fig. 01 — Orbit Fall on the public screen, MediaCityUK</p>
+            <p className="col-span-12 md:col-span-6">Fig. 01 - Orbit Fall on the public screen, MediaCityUK</p>
             <p className="col-span-12 md:col-span-6 md:text-right">Light Waves Festival · 2024</p>
           </div>
         </motion.section>
@@ -176,9 +176,9 @@ const MediaCityLightWaves = () => {
         <section className="section border-t border-foreground/10">
           <div className="container-wide">
             <div className="grid grid-cols-12 gap-4 md:gap-8 mb-16">
-              <p className="col-span-12 md:col-span-3 eyebrow">§ The Project</p>
+              <p className="col-span-12 md:col-span-3 eyebrow">Project</p>
               <h2 className="col-span-12 md:col-span-9 font-serif font-light">
-                A space-survival game, shown to the <span className="serif-italic">public</span>.
+                A space survival game shown in a public setting.
               </h2>
             </div>
 
@@ -186,20 +186,18 @@ const MediaCityLightWaves = () => {
               <div className="col-span-12 md:col-span-7 md:col-start-3 space-y-6 text-lg text-ink-soft leading-relaxed">
                 <p>
                   <span className="float-left font-serif text-7xl leading-[0.8] mr-3 mt-1 text-[hsl(var(--terracotta))]">M</span>
-                  edia City Light Waves is an annual public art-and-technology festival at
-                  MediaCityUK in Salford. As part of the Creative Collaboration module I
-                  developed and showed an original game built in Unreal Engine 5 — Orbit Fall.
+                  edia City Light Waves is a public art-and-technology festival at
+                  MediaCityUK in Salford. As part of the Creative Collaboration module, I
+                  developed and presented an original game built in Unreal Engine 5: Orbit Fall.
                 </p>
                 <p>
                   The game is a space survival experience: you control an astronaut navigating
-                  asteroid fields, planets and cosmic hazards. We installed it on a large public
-                  screen for the weekend, and watched hundreds of people pick it up and play.
+                  asteroid fields, planets and hazards. We installed it on a large public
+                  screen for the weekend, and hundreds of visitors played it.
                 </p>
                 <p>
-                  The project gave me real, on-the-ground experience of game design, 3D
-                  environment work in Unreal, Blueprint visual scripting, and the production
-                  side of running a public installation — not just making something, but
-                  putting it in front of strangers.
+                  The project gave me practical experience in game design, 3D environment work,
+                  Blueprint scripting, and production planning for a live public installation.
                 </p>
               </div>
             </div>
@@ -210,9 +208,9 @@ const MediaCityLightWaves = () => {
         <section className="section border-t border-foreground/10">
           <div className="container-wide">
             <div className="grid grid-cols-12 gap-4 md:gap-8 mb-16">
-              <p className="col-span-12 md:col-span-3 eyebrow">§ Gallery</p>
+              <p className="col-span-12 md:col-span-3 eyebrow">Gallery</p>
               <div className="col-span-12 md:col-span-9">
-                <h2 className="font-serif font-light">Six images <span className="serif-italic">from</span> the weekend.</h2>
+                <h2 className="font-serif font-light">Six images from the event.</h2>
                 <p className="mt-3 text-sm font-mono text-muted-foreground">Click any image to enlarge</p>
               </div>
             </div>
@@ -253,8 +251,8 @@ const MediaCityLightWaves = () => {
         <section className="section border-t border-foreground/10">
           <div className="container-wide">
             <div className="grid grid-cols-12 gap-4 md:gap-8 mb-16">
-              <p className="col-span-12 md:col-span-3 eyebrow">§ Details</p>
-              <h2 className="col-span-12 md:col-span-9 font-serif font-light">The <span className="serif-italic">specifics</span>.</h2>
+              <p className="col-span-12 md:col-span-3 eyebrow">Details</p>
+              <h2 className="col-span-12 md:col-span-9 font-serif font-light">Project details.</h2>
             </div>
 
             <div className="grid grid-cols-12 gap-y-12 md:gap-x-8">
@@ -332,7 +330,7 @@ const MediaCityLightWaves = () => {
               className="group inline-flex items-center gap-3 text-foreground"
             >
               <ArrowLeft className="h-4 w-4 group-hover:-translate-x-1 transition-transform" />
-              <span className="font-serif text-2xl">Back to all <span className="serif-italic">work</span></span>
+              <span className="font-serif text-2xl">Back to projects</span>
             </Link>
           </div>
         </section>

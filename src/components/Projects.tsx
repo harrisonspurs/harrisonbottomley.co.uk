@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { motion } from "framer-motion";
 import { Github, FileText, Globe, Star } from "lucide-react";
 import { Link } from "react-router-dom";
 
@@ -45,14 +44,13 @@ interface Project {
 }
 
 const projects: Project[] = [
-  // ── FEATURED — Media City ──────────────────────────────────────────────
   {
     num: "01",
     year: "2024",
-    title: "Orbit Fall — Media City Light Waves",
+    title: "Orbit Fall - Media City Light Waves",
     subtitle: "Public installation · Unreal Engine 5",
     description:
-      "A space-survival game built in Unreal Engine 5 and shown on a public screen at MediaCityUK during the Light Waves festival. Hundreds of visitors played it across the weekend — my first real taste of putting work in front of an audience.",
+      "A space survival game built in Unreal Engine 5 and shown on a public screen at MediaCityUK during the Light Waves festival.",
     tech: ["Unreal Engine 5", "Blueprint", "Game Design", "Event Production"],
     badge: "UNIVERSITY",
     category: ["university"],
@@ -65,7 +63,6 @@ const projects: Project[] = [
     ],
   },
 
-  // ── RECENTLY SUBMITTED ─────────────────────────────────────────────────
   {
     num: "02",
     year: "2026",
@@ -106,7 +103,7 @@ const projects: Project[] = [
   {
     num: "04",
     year: "2026",
-    title: "XR Design — Rooftop Scene",
+    title: "XR Design - Rooftop Scene",
     subtitle: "WebXR · First-person 3D",
     description:
       "An interactive 3D rooftop you can walk around in the browser using WASD and mouse. A spatial-design experiment for the XR module.",
@@ -123,14 +120,13 @@ const projects: Project[] = [
     ],
   },
 
-  // ── CLIENT WORK ────────────────────────────────────────────────────────
   {
     num: "05",
     year: "2025",
     title: "HBottomley Ltd",
     subtitle: "Mechanic & haulage company",
     description:
-      "A site for a local family-run mechanics and haulage business. Two service strands, one identity — built to be unmistakably Bottomley.",
+      "Website for a local family-run mechanics and haulage company.",
     tech: ["React", "Tailwind", "Lovable"],
     badge: "CLIENT",
     category: ["client"],
@@ -164,7 +160,7 @@ const projects: Project[] = [
     title: "The Wearhouse Company",
     subtitle: "Vintage clothing wholesale",
     description:
-      "A bold, image-led site for a vintage wholesaler — built to convert resellers and direct buyers to live shopping streams.",
+      "Website for a vintage clothing wholesaler with an image-led storefront.",
     tech: ["React", "Tailwind", "Lovable"],
     badge: "CLIENT",
     category: ["client"],
@@ -176,14 +172,13 @@ const projects: Project[] = [
     ],
   },
 
-  // ── UNIVERSITY ─────────────────────────────────────────────────────────
   {
     num: "08",
     year: "2025",
     title: "Backend Development",
     subtitle: "Server-side & APIs",
     description:
-      "Coursework on REST APIs, authentication and database design — the underlying plumbing of modern apps.",
+      "Coursework on REST APIs, authentication and database design.",
     tech: ["Node.js", "Python", "MongoDB", "Express", "PostgreSQL"],
     badge: "UNIVERSITY",
     category: ["university"],
@@ -201,7 +196,7 @@ const projects: Project[] = [
     title: "Interaction Design & IoT",
     subtitle: "Physical computing",
     description:
-      "Hardware-meets-software prototypes using sensors, microcontrollers and MQTT — projects that live in the real world, not just on a screen.",
+      "Physical computing projects using sensors, microcontrollers and MQTT.",
     tech: ["Arduino", "Python", "Sensors", "MQTT"],
     badge: "UNIVERSITY",
     category: ["university"],
@@ -216,7 +211,7 @@ const projects: Project[] = [
   {
     num: "10",
     year: "2024",
-    title: "Sunset Cityscape — p5.js",
+    title: "Sunset Cityscape - p5.js",
     subtitle: "Generative pixel art",
     description:
       "A pixel-art sunset cityscape sketch built in p5.js, exploring layered composition and warm atmospheric colour. Live on OpenProcessing.",
@@ -238,7 +233,7 @@ const projects: Project[] = [
     title: "Mathematical Practice",
     subtitle: "Computational mathematics",
     description:
-      "Projects applying mathematical concepts through code — algorithms, data structures and modelling.",
+      "Projects applying mathematical concepts through code, including algorithms, data structures and modelling.",
     tech: ["Python", "NumPy", "Matplotlib"],
     badge: "UNIVERSITY",
     category: ["university"],
@@ -256,7 +251,7 @@ const projects: Project[] = [
     title: "Maths for Computing",
     subtitle: "Linear algebra & calculus",
     description:
-      "Mathematical foundations for computer science — linear algebra, calculus and discrete maths applied to programming problems.",
+      "Mathematical foundations for computer science, including linear algebra, calculus and discrete maths.",
     tech: ["Python", "NumPy"],
     badge: "UNIVERSITY",
     category: ["university"],
@@ -322,6 +317,8 @@ const ButtonIcon = ({ icon }: { icon: ProjectButton["icon"] }) => {
 };
 
 const ProjectCard = ({ project }: { project: Project }) => {
+  const accentClass = project.badge === "CLIENT" ? "border-t-[3px] border-t-fuchsia-500/70" : "border-t-[3px] border-t-cyan-500/70";
+
   const renderBtn = (btn: ProjectButton) => {
     const cls = "inline-flex items-center gap-1.5 text-xs font-mono uppercase tracking-wide text-foreground hover:text-muted-foreground transition-colors";
     if (btn.disabled) {
@@ -350,7 +347,7 @@ const ProjectCard = ({ project }: { project: Project }) => {
 
   return (
     <article
-      className={`group relative border border-foreground/10 bg-card p-5 md:p-6 transition-all duration-500 hover:border-foreground/40 hover:-translate-y-1 ${
+      className={`group relative border border-foreground/10 bg-card p-5 md:p-6 transition-all duration-300 hover:border-foreground/35 ${accentClass} ${
         project.featured ? "md:col-span-2" : ""
       }`}
     >
@@ -359,7 +356,7 @@ const ProjectCard = ({ project }: { project: Project }) => {
           <img
             src={project.image}
             alt={project.title}
-            className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+            className="h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.02]"
           />
         </div>
       )}
@@ -375,7 +372,7 @@ const ProjectCard = ({ project }: { project: Project }) => {
 
         <div className="mt-4 flex flex-wrap gap-2">
           {project.tech.map((tech) => (
-            <span key={tech} className="rounded-full border border-foreground/15 px-2.5 py-1 text-xs text-muted-foreground">
+            <span key={tech} className="rounded-full border border-primary/20 bg-primary/5 px-2.5 py-1 text-xs text-muted-foreground">
               {tech}
             </span>
           ))}
@@ -397,11 +394,11 @@ const Projects = () => {
     <section id="projects" className="section">
       <div className="container-wide">
         <div className="grid grid-cols-12 gap-4 md:gap-8 items-end">
-          <p className="col-span-12 md:col-span-3 text-xs font-mono uppercase tracking-[0.25em] text-muted-foreground">
-            § Selected Work
+          <p className="col-span-12 md:col-span-3 text-xs font-mono uppercase tracking-[0.2em] text-muted-foreground">
+            Projects
           </p>
           <h2 className="col-span-12 md:col-span-9 font-serif font-light leading-[1.05]">
-            The <span className="serif-italic">archive</span> — clients, coursework and experiments.
+            Client work, university projects and personal builds.
           </h2>
         </div>
 
@@ -412,30 +409,23 @@ const Projects = () => {
               onClick={() => setActive(f.value)}
               className={`rounded-full border px-3 py-1.5 text-xs font-mono uppercase tracking-wide transition-all duration-300 ${
                 active === f.value
-                  ? "border-foreground/30 bg-foreground text-background"
-                  : "border-foreground/15 text-muted-foreground hover:text-foreground hover:border-foreground/40"
+                  ? "border-primary/40 bg-primary text-primary-foreground"
+                  : "border-foreground/15 text-muted-foreground hover:text-foreground hover:border-primary/35"
               }`}
             >
               {f.label}
             </button>
           ))}
           <span className="ml-auto text-xs font-mono uppercase tracking-wide text-muted-foreground">
-            {filtered.length.toString().padStart(2, "0")} / {projects.length.toString().padStart(2, "0")}
+            {filtered.length} projects
           </span>
         </div>
 
         <div className="mt-10 grid grid-cols-1 gap-8 md:grid-cols-2">
-          {filtered.map((project, i) => (
-            <motion.div
-              key={project.num}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-80px" }}
-              transition={{ duration: 0.6, delay: (i % 4) * 0.08 }}
-              className={project.featured ? "md:col-span-2" : ""}
-            >
+          {filtered.map((project) => (
+            <div key={project.num} className={project.featured ? "md:col-span-2" : ""}>
               <ProjectCard project={project} />
-            </motion.div>
+            </div>
           ))}
         </div>
 

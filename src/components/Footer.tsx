@@ -15,14 +15,14 @@ const Footer = () => {
             <p className="mt-1">Halifax, UK</p>
           </div>
           <nav className="flex gap-5 md:justify-center">
-            <button onClick={() => scrollTo("top")} className="hover:text-foreground transition-colors">Top</button>
-            <button onClick={() => scrollTo("projects")} className="hover:text-foreground transition-colors">Work</button>
-            <button onClick={() => scrollTo("contact")} className="hover:text-foreground transition-colors">Contact</button>
+            <button onClick={() => scrollTo("top")} className="hover:text-primary transition-colors">Top</button>
+            <button onClick={() => scrollTo("projects")} className="hover:text-primary transition-colors">Work</button>
+            <button onClick={() => scrollTo("contact")} className="hover:text-primary transition-colors">Contact</button>
           </nav>
           <div className="flex gap-5 md:justify-end">
-            <a href="https://github.com/harrisonspurs" target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors">GitHub</a>
-            <a href="https://instagram.com/harrison4_11" target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors">Instagram</a>
-            <a href="mailto:harrison11bottomley@gmail.com" className="hover:text-foreground transition-colors">Email</a>
+            <a href="https://github.com/harrisonspurs" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">GitHub</a>
+            <a href="https://instagram.com/harrison4_11" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">Instagram</a>
+            <a href="mailto:harrison11bottomley@gmail.com" className="hover:text-primary transition-colors">Email</a>
           </div>
         </div>
         <p className="mt-8 border-t border-foreground/10 pt-5 text-xs font-mono uppercase tracking-[0.18em] text-muted-foreground">

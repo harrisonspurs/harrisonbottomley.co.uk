@@ -26,7 +26,7 @@ const LoadingScreen = ({ onComplete }: { onComplete: () => void }) => {
             transition={{ duration: 0.6 }}
             className="absolute top-10 left-10 text-[10px] uppercase tracking-[0.3em] font-mono text-muted-foreground"
           >
-            Portfolio · Vol. 01
+            Portfolio
           </motion.div>
 
           <motion.div
@@ -35,7 +35,7 @@ const LoadingScreen = ({ onComplete }: { onComplete: () => void }) => {
             transition={{ duration: 0.6 }}
             className="absolute top-10 right-10 text-[10px] uppercase tracking-[0.3em] font-mono text-muted-foreground"
           >
-            MMXXVI
+            2026
           </motion.div>
 
           {/* Centre piece */}
@@ -46,7 +46,7 @@ const LoadingScreen = ({ onComplete }: { onComplete: () => void }) => {
               transition={{ duration: 0.5, delay: 0.1 }}
               className="text-[10px] uppercase tracking-[0.4em] font-mono text-muted-foreground mb-6"
             >
-              A site by
+              Loading
             </motion.p>
 
             <motion.h1

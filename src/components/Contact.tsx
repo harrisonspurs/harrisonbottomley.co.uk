@@ -12,9 +12,7 @@ const Contact = () => {
     <section id="contact" className="section border-t border-foreground/10">
       <div className="container-wide">
         <p className="text-xs font-mono uppercase tracking-[0.2em] text-muted-foreground">Contact</p>
-        <h2 className="mt-4 max-w-3xl font-serif font-light">
-          Get in <span className="serif-italic">touch</span>.
-        </h2>
+        <h2 className="mt-4 max-w-3xl font-serif font-light">Get in touch.</h2>
 
         <a
           href="mailto:harrison11bottomley@gmail.com"
@@ -30,7 +28,7 @@ const Contact = () => {
 
         <div className="mt-8 grid gap-8 lg:grid-cols-3">
           <div className="text-sm text-muted-foreground">
-            Always up for a chat about the work. Email's the fastest way through.
+            For freelance work or collaborations, email is the best contact route.
           </div>
           <ul className="lg:col-span-2 divide-y divide-foreground/10 border-y border-foreground/10">
             {channels.map((c) => (
