@@ -12,6 +12,7 @@ import xrDesignImg from "@/assets/xr_design.png";
 import fullstackImg from "@/assets/fullstack_development.png";
 import aiStudyImg from "@/assets/ai_study_tracking.png";
 import cityscapeImg from "@/assets/cityscape_sunset.png";
+import generativeArtImg from "@/assets/generative_art.png";
 import hbottomleyImg from "@/assets/hbottomley.png";
 import topfrogImg from "@/assets/topfrog.png";
 import wearhouseImg from "@/assets/wearhouse.png";
@@ -268,18 +269,20 @@ const projects: Project[] = [
   },
   {
     num: "13",
-    year: "2024",
-    title: "Generative Art Portfolio",
-    subtitle: "Algorithmic visuals",
+    year: "2026",
+    title: "Generative Art Project",
+    subtitle: "Interactive p5.js sketch",
     description:
-      "Creative-coding projects exploring generative algorithms, parametric design and procedural pattern.",
-    tech: ["p5.js", "Processing", "Three.js", "GLSL"],
+      "An interactive generative sketch that reinterprets a source image as evolving fields of strokes, with live controls for length, grid density and stroke count.",
+    tech: ["p5.js", "JavaScript", "Generative"],
     badge: "UNIVERSITY",
-    category: ["university", "in-progress"],
-    state: "in-development",
-    span: "sm",
+    category: ["university"],
+    image: generativeArtImg,
+    state: "live",
+    span: "md",
     buttons: [
-      { label: "Code", href: "https://github.com/harrisonspurs", icon: "code" },
+      { label: "Live demo", href: "https://generative-art-project.vercel.app/", icon: "live" },
+      { label: "Code", href: "https://github.com/harrisonspurs/Generative-Art_Project", icon: "code" },
       { label: "Docs", href: "/docs/generative_art.pdf", icon: "docs" },
     ],
   },
