@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { motion } from "framer-motion";
 import { Github, FileText, Globe, Star } from "lucide-react";
 import { Link } from "react-router-dom";
 
@@ -349,13 +350,17 @@ const ProjectCard = ({ project }: { project: Project }) => {
 
   return (
     <article
-      className={`border border-foreground/10 bg-card p-5 md:p-6 ${
+      className={`group relative border border-foreground/10 bg-card p-5 md:p-6 transition-all duration-500 hover:border-foreground/40 hover:-translate-y-1 ${
         project.featured ? "md:col-span-2" : ""
       }`}
     >
       {project.image && (
         <div className="aspect-[16/9] overflow-hidden border border-foreground/10 bg-background">
-          <img src={project.image} alt={project.title} className="h-full w-full object-cover" />
+          <img
+            src={project.image}
+            alt={project.title}
+            className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+          />
         </div>
       )}
 
