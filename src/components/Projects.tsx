@@ -370,7 +370,7 @@ const ProjectRow = ({ project, index }: { project: Project; index: number }) => 
       </div>
 
       {/* Image */}
-      <div className={`col-span-12 ${flip ? "md:col-span-6 md:order-3" : "md:col-span-7"} md:col-start-${flip ? "6" : "2"}`}>
+      <div className={`col-span-12 ${flip ? "md:col-span-6 md:col-start-6 md:order-3" : "md:col-span-7 md:col-start-2"}`}>
         {project.image ? (
           <div className={`relative overflow-hidden ${aspect} bg-secondary`}>
             <img
@@ -391,7 +391,7 @@ const ProjectRow = ({ project, index }: { project: Project; index: number }) => 
       </div>
 
       {/* Text */}
-      <div className={`col-span-12 ${flip ? "md:col-span-4 md:col-start-2" : "md:col-span-4"}`}>
+      <div className={`col-span-12 md:col-span-4 ${flip ? "md:col-start-2 md:row-start-1" : ""}`}>
         <p className="text-[10px] font-mono uppercase tracking-[0.25em] text-muted-foreground">
           {project.subtitle}
           {project.state === "in-development" ? " · In progress" : ""}
