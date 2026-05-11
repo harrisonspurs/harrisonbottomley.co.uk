@@ -317,14 +317,18 @@ const ButtonIcon = ({ icon }: { icon: ProjectButton["icon"] }) => {
   return null;
 };
 
-const ProjectCard = ({ project }: { project: Project }) => {
-  const accentClass = project.badge === "CLIENT" ? "border-t-[3px] border-t-fuchsia-500/70" : "border-t-[3px] border-t-cyan-500/70";
+const ProjectRow = ({ project, index }: { project: Project; index: number }) => {
+  const flip = index % 2 === 1;
 
   const renderBtn = (btn: ProjectButton) => {
-    const cls = "inline-flex items-center gap-1.5 text-xs font-mono uppercase tracking-wide text-foreground hover:text-muted-foreground transition-colors";
+    const cls =
+      "inline-flex items-center gap-1.5 text-[11px] font-mono uppercase tracking-[0.2em] text-foreground/80 hover:text-foreground border-b border-foreground/30 hover:border-foreground pb-0.5 transition-colors";
     if (btn.disabled) {
       return (
-        <span key={btn.label} className="inline-flex items-center gap-1.5 text-xs font-mono uppercase tracking-wide text-muted-foreground/50 cursor-not-allowed">
+        <span
+          key={btn.label}
+          className="inline-flex items-center gap-1.5 text-[11px] font-mono uppercase tracking-[0.2em] text-muted-foreground/50 cursor-not-allowed"
+        >
           <ButtonIcon icon={btn.icon} />
           {btn.label}
         </span>
@@ -346,44 +350,72 @@ const ProjectCard = ({ project }: { project: Project }) => {
     );
   };
 
-  return (
-    <article
-      className={`group relative border border-foreground/10 bg-card p-5 md:p-6 transition-all duration-300 hover:border-foreground/35 ${accentClass} ${
-        project.featured ? "md:col-span-2" : ""
-      }`}
-    >
-      {project.image && (
-        <div className="aspect-[16/9] overflow-hidden border border-foreground/10 bg-background">
-          <img
-            src={project.image}
-            alt={project.title}
-            className="h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.02]"
-          />
-        </div>
-      )}
+  // Visual scale based on span
+  const aspect =
+    project.span === "xl" ? "aspect-[16/10]" : project.span === "lg" ? "aspect-[4/3]" : project.span === "md" ? "aspect-[5/4]" : "aspect-[1/1]";
 
-      <div className="mt-5">
-        <p className="text-[11px] font-mono uppercase tracking-[0.2em] text-muted-foreground">
-          {project.badge} · {project.year}
+  return (
+    <motion.article
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-80px" }}
+      transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+      className="group grid grid-cols-12 gap-4 md:gap-10 items-start py-12 md:py-20 border-t border-foreground/15"
+    >
+      {/* Index marker */}
+      <div className="col-span-12 md:col-span-1 flex md:flex-col items-center md:items-start gap-3 text-[10px] font-mono uppercase tracking-[0.25em] text-muted-foreground">
+        <span>№ {project.num}</span>
+        <span className="hidden md:block h-12 w-px bg-foreground/20" />
+        <span>{project.year}</span>
+      </div>
+
+      {/* Image */}
+      <div className={`col-span-12 ${flip ? "md:col-span-6 md:order-3" : "md:col-span-7"} md:col-start-${flip ? "6" : "2"}`}>
+        {project.image ? (
+          <div className={`relative overflow-hidden ${aspect} bg-secondary`}>
+            <img
+              src={project.image}
+              alt={project.title}
+              className="absolute inset-0 h-full w-full object-cover transition-transform duration-[1200ms] ease-out group-hover:scale-[1.04]"
+              loading="lazy"
+            />
+            <div className="absolute top-3 left-3 text-[10px] font-mono uppercase tracking-[0.25em] text-background bg-foreground/80 px-2 py-1">
+              {project.badge}
+            </div>
+          </div>
+        ) : (
+          <div className={`relative overflow-hidden ${aspect} border border-foreground/15 bg-secondary flex items-center justify-center`}>
+            <p className="font-serif text-4xl text-foreground/30 italic">{project.title.split(" ")[0]}</p>
+          </div>
+        )}
+      </div>
+
+      {/* Text */}
+      <div className={`col-span-12 ${flip ? "md:col-span-4 md:col-start-2" : "md:col-span-4"}`}>
+        <p className="text-[10px] font-mono uppercase tracking-[0.25em] text-muted-foreground">
+          {project.subtitle}
           {project.state === "in-development" ? " · In progress" : ""}
         </p>
-        <h3 className="mt-2 font-serif text-2xl md:text-3xl font-light">{project.title}</h3>
-        <p className="mt-1 text-sm text-muted-foreground">{project.subtitle}</p>
-        <p className="mt-4 text-sm leading-relaxed text-foreground/85">{project.description}</p>
+        <h3 className="mt-3 font-serif text-3xl md:text-4xl lg:text-5xl font-light leading-[1.05] tracking-[-0.02em]">
+          {project.title}
+        </h3>
+        <p className="mt-5 text-sm md:text-base text-foreground/80 leading-relaxed max-w-md">
+          {project.description}
+        </p>
 
-        <div className="mt-4 flex flex-wrap gap-2">
+        <div className="mt-5 flex flex-wrap gap-x-3 gap-y-1">
           {project.tech.map((tech) => (
-            <span key={tech} className="rounded-full border border-primary/20 bg-primary/5 px-2.5 py-1 text-xs text-muted-foreground">
+            <span key={tech} className="text-[11px] font-mono text-muted-foreground">
               {tech}
             </span>
           ))}
         </div>
 
-        <div className="mt-5 flex flex-wrap gap-x-5 gap-y-2 border-t border-foreground/10 pt-4">
+        <div className="mt-7 flex flex-wrap gap-x-6 gap-y-3">
           {project.buttons.map((btn) => renderBtn(btn))}
         </div>
       </div>
-    </article>
+    </motion.article>
   );
 };
 
@@ -392,49 +424,47 @@ const Projects = () => {
   const filtered = active === "all" ? projects : projects.filter((p) => p.category.includes(active));
 
   return (
-    <section id="projects" className="section">
+    <section id="projects" className="section border-t border-foreground/15">
       <div className="container-wide">
         <div className="grid grid-cols-12 gap-4 md:gap-8 items-end">
-          <p className="col-span-12 md:col-span-3 text-xs font-mono uppercase tracking-[0.2em] text-muted-foreground">
-            Projects
-          </p>
-          <h2 className="col-span-12 md:col-span-9 font-serif font-light leading-[1.05]">
-            Client work, university projects and personal builds.
+          <p className="col-span-12 md:col-span-3 eyebrow">01 — Index</p>
+          <h2 className="col-span-12 md:col-span-9 font-serif font-light leading-[1.02] tracking-[-0.02em]">
+            Selected <span className="serif-italic text-[hsl(var(--terracotta))]">work</span>,
+            <br />
+            shop &amp; sketchbook.
           </h2>
         </div>
 
-        <div className="mt-12 flex flex-wrap items-center gap-2 border-b border-foreground/10 pb-5">
+        <div className="mt-14 flex flex-wrap items-center gap-x-6 gap-y-3 border-b border-foreground/15 pb-5">
           {filters.map((f) => (
             <button
               key={f.value}
               onClick={() => setActive(f.value)}
-              className={`rounded-full border px-3 py-1.5 text-xs font-mono uppercase tracking-wide transition-all duration-300 ${
+              className={`text-[11px] font-mono uppercase tracking-[0.2em] pb-1 border-b transition-colors ${
                 active === f.value
-                  ? "border-primary/40 bg-primary text-primary-foreground"
-                  : "border-foreground/15 text-muted-foreground hover:text-foreground hover:border-primary/35"
+                  ? "text-foreground border-foreground"
+                  : "text-muted-foreground border-transparent hover:text-foreground"
               }`}
             >
               {f.label}
             </button>
           ))}
-          <span className="ml-auto text-xs font-mono uppercase tracking-wide text-muted-foreground">
-            {filtered.length} projects
+          <span className="ml-auto text-[11px] font-mono uppercase tracking-[0.2em] text-muted-foreground">
+            {String(filtered.length).padStart(2, "0")} entries
           </span>
         </div>
 
-        <div className="mt-10 grid grid-cols-1 gap-8 md:grid-cols-2">
-          {filtered.map((project) => (
-            <div key={project.num} className={project.featured ? "md:col-span-2" : ""}>
-              <ProjectCard project={project} />
-            </div>
+        <div>
+          {filtered.map((project, i) => (
+            <ProjectRow key={project.num} project={project} index={i} />
           ))}
         </div>
 
         {filtered.length === 0 && (
           <div className="text-center py-20">
-            <p className="font-serif text-2xl text-muted-foreground mb-4">No projects in this category.</p>
+            <p className="font-serif text-2xl text-muted-foreground mb-4">No entries here yet.</p>
             <button onClick={() => setActive("all")} className="text-sm underline underline-offset-4">
-              Show all projects
+              Show everything
             </button>
           </div>
         )}
