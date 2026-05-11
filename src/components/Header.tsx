@@ -18,34 +18,40 @@ const Header = () => {
   };
 
   const navItems = [
-    { label: "Work", id: "projects" },
-    { label: "About", id: "about" },
-    { label: "Skills", id: "skills" },
-    { label: "Contact", id: "contact" },
+    { label: "Index", id: "projects", num: "01" },
+    { label: "Bio", id: "about", num: "02" },
+    { label: "Stack", id: "skills", num: "03" },
+    { label: "Contact", id: "contact", num: "04" },
   ];
 
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-40 transition-all duration-500 ${
-        scrolled ? "bg-background/95 backdrop-blur border-b border-foreground/10" : "bg-background/80"
+        scrolled ? "bg-background/90 backdrop-blur-md border-b border-foreground/10" : ""
       }`}
     >
-      <div className="container-wide py-4 flex items-center justify-between gap-8">
-        <button onClick={() => scrollToSection("top")} className="text-left group">
-          <p className="font-serif text-xl leading-none">Harrison Bottomley</p>
-          <p className="text-[11px] uppercase tracking-[0.2em] font-mono text-muted-foreground mt-1">
-            Halifax, UK
-          </p>
+      <div className="container-wide py-5 flex items-center justify-between gap-8">
+        <button onClick={() => scrollToSection("top")} className="text-left flex items-center gap-3 group">
+          <span className="inline-flex h-7 w-7 items-center justify-center border border-foreground text-[11px] font-mono font-medium tracking-tight">
+            HB
+          </span>
+          <span className="hidden sm:flex flex-col leading-none">
+            <span className="font-serif text-base">Harrison Bottomley</span>
+            <span className="text-[10px] uppercase tracking-[0.25em] font-mono text-muted-foreground mt-1">
+              Est. Halifax
+            </span>
+          </span>
         </button>
 
-        <nav className="hidden md:flex items-center gap-6">
+        <nav className="hidden md:flex items-center gap-8">
           {navItems.map((item) => (
             <button
               key={item.id}
               onClick={() => scrollToSection(item.id)}
-              className="text-sm text-muted-foreground hover:text-primary transition-colors"
+              className="group flex items-baseline gap-1.5 text-xs font-mono uppercase tracking-[0.18em] text-muted-foreground hover:text-foreground transition-colors"
             >
-              {item.label}
+              <span className="text-[9px] text-foreground/40 group-hover:text-foreground/70">{item.num}</span>
+              <span>{item.label}</span>
             </button>
           ))}
         </nav>
@@ -66,8 +72,9 @@ const Header = () => {
               <button
                 key={item.id}
                 onClick={() => scrollToSection(item.id)}
-                className="text-left py-1.5 text-base text-foreground"
+                className="text-left py-2 font-serif text-2xl"
               >
+                <span className="text-xs font-mono text-muted-foreground mr-3">{item.num}</span>
                 {item.label}
               </button>
             ))}
