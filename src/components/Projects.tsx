@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Github, FileText, Globe, Star, ArrowUpRight } from "lucide-react";
+import { Github, FileText, Globe, Star } from "lucide-react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 
