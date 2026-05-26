@@ -116,10 +116,16 @@
   }
 
   .serif-italic {
-    font-family: 'Fraunces', Georgia, serif;
-    font-style: italic;
-    font-weight: 300;
+    font-family: 'Bagel Fat One', sans-serif;
+    font-style: normal;
+    color: hsl(var(--terracotta));
   }
+
+  .wobble {
+    display: inline-block;
+    animation: wobble 4s ease-in-out infinite;
+  }
+
 
   .rule {
     @apply border-t border-foreground/15;
