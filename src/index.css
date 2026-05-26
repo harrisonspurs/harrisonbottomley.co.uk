@@ -159,8 +159,9 @@
 
 @layer utilities {
   .font-serif {
-    font-family: 'Fraunces', Georgia, serif;
+    font-family: 'Bagel Fat One', 'Fredoka', sans-serif;
   }
+
 
   .font-mono {
     font-family: 'JetBrains Mono', monospace;
