@@ -61,26 +61,26 @@
 
   body {
     @apply bg-background text-foreground antialiased;
-    font-family: 'Inter', system-ui, -apple-system, sans-serif;
-    font-feature-settings: "ss01", "cv11";
+    font-family: 'Fredoka', system-ui, -apple-system, sans-serif;
   }
 
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'Fraunces', Georgia, serif;
+    font-family: 'Bagel Fat One', 'Fredoka', system-ui, sans-serif;
     @apply text-foreground;
-    font-feature-settings: "ss01";
+    font-weight: 400;
+    letter-spacing: -0.01em;
   }
 
   h1 {
-    @apply text-5xl md:text-7xl lg:text-[9rem] leading-[0.95] tracking-[-0.03em] font-light;
+    @apply text-6xl md:text-8xl lg:text-[10rem] leading-[0.95];
   }
 
   h2 {
-    @apply text-3xl md:text-5xl lg:text-6xl leading-[1.05] tracking-[-0.02em] font-light;
+    @apply text-4xl md:text-6xl lg:text-7xl leading-[1];
   }
 
   h3 {
-    @apply text-2xl leading-tight tracking-[-0.01em] font-normal;
+    @apply text-2xl leading-tight;
   }
 
   p {
