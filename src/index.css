@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT,WONK@9..144,300..900,0..100,0..1&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bagel+Fat+One&family=Fredoka:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -27,7 +27,7 @@
     --muted-foreground: 30 5% 38%;
 
     /* Single muted accent — warm rust */
-    --accent: 14 48% 42%;
+    --accent: 14 88% 55%;
     --accent-foreground: 40 14% 94%;
 
     --destructive: 0 60% 45%;
@@ -42,7 +42,7 @@
     --ink: 30 6% 10%;
     --ink-soft: 30 5% 32%;
     --rule: 30 8% 78%;
-    --terracotta: 14 48% 42%;
+    --terracotta: 14 88% 55%;
     --ochre: 35 35% 45%;
     --moss: 90 12% 32%;
     --paper: 40 14% 94%;
@@ -61,26 +61,26 @@
 
   body {
     @apply bg-background text-foreground antialiased;
-    font-family: 'Inter', system-ui, -apple-system, sans-serif;
-    font-feature-settings: "ss01", "cv11";
+    font-family: 'Fredoka', system-ui, -apple-system, sans-serif;
   }
 
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'Fraunces', Georgia, serif;
+    font-family: 'Bagel Fat One', 'Fredoka', system-ui, sans-serif;
     @apply text-foreground;
-    font-feature-settings: "ss01";
+    font-weight: 400;
+    letter-spacing: -0.01em;
   }
 
   h1 {
-    @apply text-5xl md:text-7xl lg:text-[9rem] leading-[0.95] tracking-[-0.03em] font-light;
+    @apply text-6xl md:text-8xl lg:text-[10rem] leading-[0.95];
   }
 
   h2 {
-    @apply text-3xl md:text-5xl lg:text-6xl leading-[1.05] tracking-[-0.02em] font-light;
+    @apply text-4xl md:text-6xl lg:text-7xl leading-[1];
   }
 
   h3 {
-    @apply text-2xl leading-tight tracking-[-0.01em] font-normal;
+    @apply text-2xl leading-tight;
   }
 
   p {
@@ -116,10 +116,16 @@
   }
 
   .serif-italic {
-    font-family: 'Fraunces', Georgia, serif;
-    font-style: italic;
-    font-weight: 300;
+    font-family: 'Bagel Fat One', sans-serif;
+    font-style: normal;
+    color: hsl(var(--terracotta));
   }
+
+  .wobble {
+    display: inline-block;
+    animation: wobble 4s ease-in-out infinite;
+  }
+
 
   .rule {
     @apply border-t border-foreground/15;
@@ -153,8 +159,9 @@
 
 @layer utilities {
   .font-serif {
-    font-family: 'Fraunces', Georgia, serif;
+    font-family: 'Bagel Fat One', 'Fredoka', sans-serif;
   }
+
 
   .font-mono {
     font-family: 'JetBrains Mono', monospace;
@@ -182,3 +189,15 @@
   from { transform: translateX(0); }
   to   { transform: translateX(-50%); }
 }
+
+@keyframes wobble {
+  0%, 100% { transform: rotate(-2deg) translateY(0); }
+  50%      { transform: rotate(2deg) translateY(-4px); }
+}
+
+@keyframes blob {
+  0%, 100% { border-radius: 42% 58% 70% 30% / 45% 45% 55% 55%; transform: translate(0,0) rotate(0deg); }
+  33%      { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; transform: translate(10px,-8px) rotate(8deg); }
+  66%      { border-radius: 35% 65% 55% 45% / 40% 60% 40% 60%; transform: translate(-8px,6px) rotate(-6deg); }
+}
+
