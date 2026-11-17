@@ -7,6 +7,7 @@ import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import MediaCityLightWaves from "./pages/MediaCityLightWaves";
 import About from "./pages/About";
+import PageMetadata from "./components/PageMetadata";
 
 const queryClient = new QueryClient();
 
@@ -16,6 +17,7 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
+        <PageMetadata />
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/about" element={<About />} />
